@@ -28,7 +28,7 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <com.example.canvas.DrawView
+    <com.example.canvas.mainscreen.DrawView
         android:id="@+id/viewDraw"
         android:layout_width="0dp"
         android:layout_height="0dp"

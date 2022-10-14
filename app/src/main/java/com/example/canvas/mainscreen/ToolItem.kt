@@ -1,6 +1,9 @@
-package com.example.canvas
+package com.example.canvas.mainscreen
 
 import androidx.annotation.ColorRes
+import com.example.canvas.base.Item
+import com.example.canvas.settings.COLOR
+import com.example.canvas.settings.TOOLS
 
 sealed class ToolItem : Item {
     data class ColorModel(@ColorRes val color: Int) : ToolItem()
