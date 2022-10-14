@@ -3,6 +3,7 @@ package com.example.canvas.mainscreen
 import androidx.annotation.ColorRes
 import com.example.canvas.base.Item
 import com.example.canvas.settings.COLOR
+import com.example.canvas.settings.SIZE
 import com.example.canvas.settings.TOOLS
 
 sealed class ToolItem : Item {
@@ -11,7 +12,7 @@ sealed class ToolItem : Item {
         val type: TOOLS,
         val selectedTool: TOOLS = TOOLS.NORMAL,
         val isSelected: Boolean = false,
-//        val selectedSize: SIZE = SIZE.SMALL,
+        val selectedSize: SIZE = SIZE.SMALL,
         val selectedColor: COLOR = COLOR.BLACK
     ) : ToolItem()
 }

@@ -16,7 +16,8 @@ enum class COLOR(
     TURQUOISE(R.color.teal_200),
     YELLOW(android.R.color.holo_orange_light),
     L_BLUE(android.R.color.holo_blue_bright),
-    ORANGE(android.R.color.holo_orange_dark);
+    ORANGE(android.R.color.holo_orange_dark),
+    WHITE(R.color.white);
 
     companion object {
         private val map = values().associateBy(COLOR::value)
