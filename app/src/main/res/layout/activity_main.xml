@@ -38,6 +38,16 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <include
+        android:id="@+id/sizeLayout"
+        layout="@layout/layout_tools"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@id/paletteLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <include
         android:id="@+id/paletteLayout"
         layout="@layout/layout_tools"
         android:layout_width="0dp"

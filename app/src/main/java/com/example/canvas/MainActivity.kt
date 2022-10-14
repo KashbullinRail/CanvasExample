@@ -21,6 +21,7 @@ class MainActivity : AppCompatActivity() {
 
     private val paletteLayout: ToolsLayout by lazy { findViewById(R.id.paletteLayout) }
     private val toolsLayout: ToolsLayout by lazy { findViewById(R.id.toolLayout) }
+    private val sizeLayout: ToolsLayout by lazy { findViewById(R.id.sizeLayout) }
     private val ivTools: ImageView by lazy { findViewById(R.id.ivTools) }
     private val drawView: DrawView by lazy { findViewById(R.id.viewDraw) }
 
@@ -41,6 +42,11 @@ class MainActivity : AppCompatActivity() {
         ivTools.setOnClickListener {
             viewModel.processUiEvent(UiEvent.OnToolbarClicked)
         }
+
+        sizeLayout.setOnClickListener {
+            viewModel.processUiEvent(UiEvent.OnSizeClick(it))
+        }
+
     }
 
     private fun render(viewState: ViewState) {
