@@ -81,7 +81,6 @@ class CanvasViewModel : BaseViewModel<ViewState>() {
                     toolsList = toolsList
                 )
             }
-
             else -> return null
         }
     }
