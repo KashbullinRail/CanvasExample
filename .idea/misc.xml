@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="../../../../layout/custom_preview.xml" value="0.1" />
+        <entry key="..\:/Users/Public/Documents/Android/Canvas-main/app/src/main/res/layout/activity_main.xml" value="0.1334853090172239" />
+        <entry key="app/src/main/res/drawable/bg_selected.xml" value="0.228125" />
+        <entry key="app/src/main/res/drawable/ic_dashed_line.xml" value="0.228125" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.1534526854219949" />
+        <entry key="app/src/main/res/layout/item_palette.xml" value="0.21197916666666666" />
+        <entry key="app/src/main/res/layout/item_pallete.xml" value="0.37604166666666666" />
+        <entry key="app/src/main/res/layout/item_tools.xml" value="0.21197916666666666" />
+        <entry key="app/src/main/res/layout/layout_tools.xml" value="0.1477832512315271" />
+        <entry key="app/src/main/res/layout/view_tools.xml" value="0.37604166666666666" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="11" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
