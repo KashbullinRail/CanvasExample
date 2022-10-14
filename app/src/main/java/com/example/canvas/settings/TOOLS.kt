@@ -1,6 +1,7 @@
-package com.example.canvas
+package com.example.canvas.settings
 
 import androidx.annotation.DrawableRes
+import com.example.canvas.R
 
 enum class TOOLS(
     @DrawableRes

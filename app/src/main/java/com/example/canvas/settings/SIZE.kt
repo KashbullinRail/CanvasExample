@@ -1,4 +1,4 @@
-package com.example.canvas
+package com.example.canvas.settings
 
 enum class SIZE(
     val value: Int

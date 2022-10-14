@@ -4,6 +4,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageView
 import androidx.core.view.isVisible
+import com.example.canvas.feature.model.CanvasViewModel
+import com.example.canvas.mainscreen.DrawView
+import com.example.canvas.mainscreen.ToolsLayout
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {

@@ -1,5 +1,11 @@
 package com.example.canvas
 
+import com.example.canvas.base.Event
+import com.example.canvas.feature.model.CanvasViewState
+import com.example.canvas.mainscreen.ToolItem
+import com.example.canvas.settings.COLOR
+import com.example.canvas.settings.TOOLS
+
 data class ViewState(
     val toolsList: List<ToolItem.ToolModel>,
     val colorList: List<ToolItem.ColorModel>,

@@ -1,4 +1,4 @@
-package com.example.canvas
+package com.example.canvas.mainscreen
 
 import android.content.Context
 import android.graphics.*
@@ -7,6 +7,9 @@ import android.view.MotionEvent
 import android.view.View
 import android.view.ViewConfiguration
 import androidx.core.content.res.ResourcesCompat
+import com.example.canvas.feature.model.CanvasViewState
+import com.example.canvas.settings.COLOR
+import com.example.canvas.settings.TOOLS
 import kotlin.math.abs
 
 class DrawView @JvmOverloads constructor(

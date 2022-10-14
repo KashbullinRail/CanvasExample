@@ -1,10 +1,11 @@
-package com.example.canvas
+package com.example.canvas.mainscreen
 
 import android.content.Context
 import android.util.AttributeSet
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.canvas.*
 import com.hannesdorfmann.adapterdelegates4.ListDelegationAdapter
 
 class ToolsLayout @JvmOverloads constructor(

@@ -1,4 +1,4 @@
-package com.example.canvas
+package com.example.canvas.base
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
