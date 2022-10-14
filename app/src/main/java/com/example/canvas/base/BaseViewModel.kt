@@ -25,4 +25,5 @@ abstract class BaseViewModel<VIEW_STATE> : ViewModel() {
             viewState.value = newViewState
         }
     }
+
 }
