@@ -10,7 +10,7 @@ enum class COLOR(
 
     BLACK(R.color.black),
     RED(android.R.color.holo_red_dark),
-    BLUE(R.color.design_default_color_primary_dark),
+    BLUE(android.R.color.holo_blue_dark),
     GREEN(android.R.color.holo_green_dark),
     PINK(R.color.purple_200),
     TURQUOISE(R.color.teal_200),
