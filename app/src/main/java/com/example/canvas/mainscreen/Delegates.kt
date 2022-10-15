@@ -1,6 +1,7 @@
 package com.example.canvas
 
 import android.graphics.PorterDuff
+import android.view.View
 import android.widget.ImageView
 import com.example.canvas.base.Item
 import com.example.canvas.mainscreen.ToolItem
