@@ -13,7 +13,9 @@ class CanvasViewModel : BaseViewModel<ViewState>() {
         ViewState(
             colorList = enumValues<COLOR>().map { ToolItem.ColorModel(it.value) },
             toolsList = enumValues<TOOLS>().map { ToolItem.ToolModel(it) },
+            sizeList = enumValues<SIZE>().map { ToolItem.SizeModel(it) },
             isPaletteVisible = false,
+            isBrushSizeChangerVisible = false,
             canvasViewState = CanvasViewState(
                 color = COLOR.BLACK,
                 size = SIZE.MEDIUM,
@@ -23,7 +25,7 @@ class CanvasViewModel : BaseViewModel<ViewState>() {
         )
 
     init {
-        processDataEvent(DataEvent.OnSetDefaultTools(tool = TOOLS.NORMAL, color = COLOR.BLACK))
+        processDataEvent(DataEvent.OnSetDefaultTools(tool = TOOLS.NORMAL, color = COLOR.BLACK, size = SIZE.MEDIUM))
     }
 
     override fun reduce(event: Event, previousState: ViewState): ViewState? {
