@@ -14,7 +14,7 @@ class MainActivity : AppCompatActivity() {
     companion object {
         private const val PALETTE_VIEW = 0
         private const val TOOLS_VIEW = 1
-        private const val SIZE_VIEW = 0
+        private const val SIZE_VIEW = 1
     }
     private val viewModel: CanvasViewModel by viewModel()
 
@@ -57,15 +57,17 @@ class MainActivity : AppCompatActivity() {
             isVisible = viewState.isPaletteVisible
         }
 
+        with(toolsList[SIZE_VIEW]) {
+            render(viewState.sizeList)
+            isVisible = viewState.isBrushSizeChangerVisible
+        }
+
         with(toolsList[TOOLS_VIEW]) {
             render(viewState.toolsList)
             isVisible = viewState.isToolsVisible
         }
 
-        with(toolsList[SIZE_VIEW]) {
-            render(viewState.sizeList)
-            isVisible = viewState.isBrushSizeChangerVisible
-        }
+
 
         drawView.render(viewState.canvasViewState)
     }
