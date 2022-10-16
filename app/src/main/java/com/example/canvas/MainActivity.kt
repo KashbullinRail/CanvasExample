@@ -18,6 +18,7 @@ class MainActivity : AppCompatActivity() {
     }
     private val viewModel: CanvasViewModel by viewModel()
 
+
     private var toolsList: List<ToolsLayout> = listOf()
 
     private val paletteLayout: ToolsLayout by lazy { findViewById(R.id.paletteLayout) }
