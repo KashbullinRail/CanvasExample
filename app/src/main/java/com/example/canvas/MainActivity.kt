@@ -74,8 +74,6 @@ class MainActivity : AppCompatActivity() {
             isVisible = viewState.isToolsVisible
         }
 
-
-
         drawView.render(viewState.canvasViewState)
     }
 }
