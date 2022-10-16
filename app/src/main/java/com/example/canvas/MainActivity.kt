@@ -25,6 +25,7 @@ class MainActivity : AppCompatActivity() {
     private val sizeLayout: ToolsLayout by lazy { findViewById(R.id.sizeLayout) }
     private val ivTools: ImageView by lazy { findViewById(R.id.ivTools) }
     private val drawView: DrawView by lazy { findViewById(R.id.viewDraw) }
+    private val ivClear: ImageView by lazy { findViewById(R.id.ivClear) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,6 +47,11 @@ class MainActivity : AppCompatActivity() {
 
         sizeLayout.setOnClickListener {
             viewModel.processUiEvent(UiEvent.OnSizeClick(it))
+        }
+
+        ivClear.setOnClickListener {
+            viewModel.processUiEvent(UiEvent.OnToolbarClicked)
+            drawView.clear()
         }
 
     }
