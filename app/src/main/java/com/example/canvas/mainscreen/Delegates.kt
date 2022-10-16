@@ -5,6 +5,7 @@ import android.view.View
 import android.widget.ImageView
 import com.example.canvas.base.Item
 import com.example.canvas.mainscreen.ToolItem
+import com.example.canvas.settings.SIZE
 import com.example.canvas.settings.TOOLS
 import com.hannesdorfmann.adapterdelegates4.AdapterDelegate
 import com.hannesdorfmann.adapterdelegates4.dsl.adapterDelegateLayoutContainer
@@ -44,9 +45,9 @@ fun toolsAdapterDelegate(
 
         when (item.type) {
 
-//            TOOLS.SIZE -> {
-//                itemView.tvToolsText.visibility = View.VISIBLE
-//                itemView.tvToolsText.text = item.selectedSize.value.toString()
+//            TOOLS.SIZE ->
+////                itemView.tvToolsText.visibility = View.VISIBLE
+////                itemView.tvToolsText.text = item.selectedSize.value.toString()
 //            }
 
             TOOLS.PALETTE -> {

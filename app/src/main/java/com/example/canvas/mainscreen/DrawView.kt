@@ -7,8 +7,10 @@ import android.view.MotionEvent
 import android.view.View
 import android.view.ViewConfiguration
 import androidx.core.content.res.ResourcesCompat
+import com.example.canvas.DataEvent
 import com.example.canvas.feature.model.CanvasViewState
 import com.example.canvas.settings.COLOR
+import com.example.canvas.settings.SIZE
 import com.example.canvas.settings.TOOLS
 import kotlin.math.abs
 
@@ -78,6 +80,10 @@ class DrawView @JvmOverloads constructor(
     fun setOnClickField(onClickField: () -> Unit) {
         onClick = onClickField
     }
+
+//    fun sizeChange() {
+//
+//    }
 
     override fun onTouchEvent(event: MotionEvent): Boolean {
         motionTouchEventX = event.x

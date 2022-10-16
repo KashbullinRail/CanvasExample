@@ -43,6 +43,11 @@ class CanvasViewModel : BaseViewModel<ViewState>() {
                     TOOLS.PALETTE.ordinal -> {
                         return previousState.copy(isPaletteVisible = !previousState.isPaletteVisible)
                     }
+                    TOOLS.SIZE.ordinal -> {
+
+                        return previousState.copy(isBrushSizeChangerVisible = !previousState.isBrushSizeChangerVisible)
+
+                    }
                     else -> {
 
                         val toolsList = previousState.toolsList.mapIndexed() { index, model ->
@@ -77,6 +82,8 @@ class CanvasViewModel : BaseViewModel<ViewState>() {
                     canvasViewState = previousState.canvasViewState.copy(color = selectedColor)
                 )
             }
+
+//
 
             is DataEvent.OnSetDefaultTools -> {
                 val toolsList = previousState.toolsList.map { model ->

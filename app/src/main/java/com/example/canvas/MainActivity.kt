@@ -3,6 +3,7 @@ package com.example.canvas
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.core.view.isVisible
 import com.example.canvas.feature.model.CanvasViewModel
 import com.example.canvas.mainscreen.DrawView
@@ -27,6 +28,7 @@ class MainActivity : AppCompatActivity() {
     private val ivTools: ImageView by lazy { findViewById(R.id.ivTools) }
     private val drawView: DrawView by lazy { findViewById(R.id.viewDraw) }
     private val ivClear: ImageView by lazy { findViewById(R.id.ivClear) }
+    private val tvSize: TextView by lazy { findViewById(R.id.tvSize) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,6 +56,10 @@ class MainActivity : AppCompatActivity() {
             viewModel.processUiEvent(UiEvent.OnToolbarClicked)
             drawView.clear()
         }
+
+//        tvSize.setOnClickListener {
+//            viewModel.processUiEvent(UiEvent.OnSizeClick)
+//        }
 
     }
 
