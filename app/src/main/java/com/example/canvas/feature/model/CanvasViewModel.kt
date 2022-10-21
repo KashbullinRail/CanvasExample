@@ -13,7 +13,7 @@ class CanvasViewModel : BaseViewModel<ViewState>() {
         ViewState(
             colorList = enumValues<COLOR>().map { ToolItem.ColorModel(it.value) },
             toolsList = enumValues<TOOLS>().map { ToolItem.ToolModel(it) },
-            sizeList = enumValues<SIZE>().map { ToolItem.SizeModel(it) },
+            sizeList = enumValues<SIZE>().map { ToolItem.SizeModel(it.value) },
             isPaletteVisible = false,
             isBrushSizeChangerVisible = false,
             canvasViewState = CanvasViewState(

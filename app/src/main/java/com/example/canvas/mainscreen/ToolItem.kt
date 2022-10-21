@@ -8,7 +8,7 @@ import com.example.canvas.settings.TOOLS
 
 sealed class ToolItem : Item {
     data class ColorModel(@ColorRes val color: Int) : ToolItem()
-    data class SizeModel(val size: SIZE): ToolItem()
+    data class SizeModel(val size: Int): ToolItem()
     data class ToolModel(
         val type: TOOLS,
         val selectedTool: TOOLS = TOOLS.NORMAL,

@@ -81,10 +81,6 @@ class DrawView @JvmOverloads constructor(
         onClick = onClickField
     }
 
-//    fun sizeChange() {
-//
-//    }
-
     override fun onTouchEvent(event: MotionEvent): Boolean {
         motionTouchEventX = event.x
         motionTouchEventY = event.y
