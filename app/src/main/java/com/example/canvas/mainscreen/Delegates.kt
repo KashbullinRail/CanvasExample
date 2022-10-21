@@ -1,5 +1,6 @@
 package com.example.canvas
 
+import android.annotation.SuppressLint
 import android.graphics.PorterDuff
 import android.view.View
 import android.widget.ImageView
@@ -28,6 +29,25 @@ fun colorAdapterDelegate(
         }
     }
 
+
+@SuppressLint("UseCompatLoadingForDrawables")
+fun sizeAdapterDelegate(
+    onClick: (Int) -> Unit
+): AdapterDelegate<List<Item>> =
+    adapterDelegateLayoutContainer<ToolItem.SizeModel, Item>(
+        R.layout.item_size
+    ) {
+
+        val size: ImageView = findViewById(R.id.size)
+        itemView.setOnClickListener { onClick(adapterPosition) }
+
+        bind { list ->
+            size.setImageDrawable(context.resources.getDrawable(item.size))
+        }
+    }
+
+
+@SuppressLint("UseCompatLoadingForDrawables")
 fun toolsAdapterDelegate(
     onToolsClick: (Int) -> Unit
 ): AdapterDelegate<List<Item>> = adapterDelegateLayoutContainer<ToolItem.ToolModel, Item>(
@@ -54,6 +74,12 @@ fun toolsAdapterDelegate(
                 ivTool.setColorFilter(
                     context.resources.getColor(item.selectedColor.value, null),
                     PorterDuff.Mode.SRC_IN
+                )
+            }
+
+            TOOLS.SIZE -> {
+                ivTool.setImageDrawable(
+                    context.resources.getDrawable(item.selectedSize.value)
                 )
             }
 

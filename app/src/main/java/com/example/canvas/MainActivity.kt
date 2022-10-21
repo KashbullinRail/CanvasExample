@@ -3,7 +3,6 @@ package com.example.canvas
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageView
-import android.widget.TextView
 import androidx.core.view.isVisible
 import com.example.canvas.feature.model.CanvasViewModel
 import com.example.canvas.mainscreen.DrawView
@@ -49,7 +48,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         sizeLayout.setOnClickListener {
-            viewModel.processUiEvent(UiEvent.OnSizeClick(it))
+            viewModel.processUiEvent(UiEvent.OnSizeClicked(it))
         }
 
         ivClear.setOnClickListener {
