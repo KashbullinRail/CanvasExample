@@ -34,7 +34,8 @@ class CanvasViewModel : BaseViewModel<ViewState>() {
             is UiEvent.OnToolbarClicked -> {
                 return previousState.copy(
                     isToolsVisible = !previousState.isToolsVisible,
-                    isPaletteVisible = false
+                    isPaletteVisible = false,
+                    isBrushSizeChangerVisible = false
                 )
             }
 
@@ -44,7 +45,6 @@ class CanvasViewModel : BaseViewModel<ViewState>() {
                         return previousState.copy(isPaletteVisible = !previousState.isPaletteVisible)
                     }
                     TOOLS.SIZE.ordinal -> {
-
                         return previousState.copy(isBrushSizeChangerVisible = !previousState.isBrushSizeChangerVisible)
 
                     }
@@ -80,6 +80,23 @@ class CanvasViewModel : BaseViewModel<ViewState>() {
                 return previousState.copy(
                     toolsList = toolsList,
                     canvasViewState = previousState.canvasViewState.copy(color = selectedColor)
+                )
+            }
+
+            is UiEvent.OnSizeClick -> {
+                val selectedSize = SIZE.values()[event.index]
+
+                val toolsList = previousState.toolsList.map {
+                    if (it.type == TOOLS.SIZE) {
+                        it.copy(selectedSize = selectedSize)
+                    } else {
+                        it
+                    }
+                }
+
+                return previousState.copy(
+                    toolsList = toolsList,
+                    canvasViewState = previousState.canvasViewState.copy(size = selectedSize)
                 )
             }
 
