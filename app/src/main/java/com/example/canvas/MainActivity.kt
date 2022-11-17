@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity() {
     private val ivTools: ImageView by lazy { findViewById(R.id.ivTools) }
     private val drawView: DrawView by lazy { findViewById(R.id.viewDraw) }
     private val ivClear: ImageView by lazy { findViewById(R.id.ivClear) }
-//    private val tvSize: TextView by lazy { findViewById(R.id.tvSize) }
+    private val tvSizeLayout: ToolsLayout by lazy { findViewById(R.id.tvSizeLayout) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
