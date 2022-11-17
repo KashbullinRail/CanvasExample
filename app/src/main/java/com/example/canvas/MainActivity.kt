@@ -19,7 +19,6 @@ class MainActivity : AppCompatActivity() {
     }
     private val viewModel: CanvasViewModel by viewModel()
 
-
     private var toolsList: List<ToolsLayout> = listOf()
 
     private val paletteLayout: ToolsLayout by lazy { findViewById(R.id.paletteLayout) }
@@ -33,7 +32,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        toolsList = listOf(paletteLayout, toolsLayout)
+        toolsList = listOf(paletteLayout, toolsLayout, sizeLayout)
         viewModel.viewState.observe(this, ::render)
 
         paletteLayout.setOnClickListener {
@@ -53,7 +52,6 @@ class MainActivity : AppCompatActivity() {
         }
 
         ivClear.setOnClickListener {
-            viewModel.processUiEvent(UiEvent.OnToolbarClicked)
             drawView.clear()
         }
 
@@ -79,7 +77,6 @@ class MainActivity : AppCompatActivity() {
             render(viewState.toolsList)
             isVisible = viewState.isToolsVisible
         }
-
 
         drawView.render(viewState.canvasViewState)
     }

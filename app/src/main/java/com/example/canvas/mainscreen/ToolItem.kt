@@ -1,7 +1,6 @@
 package com.example.canvas.mainscreen
 
 import androidx.annotation.ColorRes
-import com.example.canvas.base.Item
 import com.example.canvas.settings.COLOR
 import com.example.canvas.settings.SIZE
 import com.example.canvas.settings.TOOLS
