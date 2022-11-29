@@ -39,8 +39,6 @@ fun sizeAdapterDelegate(
         }
     }
 
-
-
 fun toolsAdapterDelegate(
     onToolsClick: (Int) -> Unit
 ): AdapterDelegate<List<Item>> = adapterDelegateLayoutContainer<ToolItem.ToolModel, Item>(
@@ -82,5 +80,7 @@ fun toolsAdapterDelegate(
         itemView.setOnClickListener {
             onToolsClick(adapterPosition)
         }
+
     }
+
 }
