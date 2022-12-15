@@ -11,11 +11,16 @@ enum class COLOR(
     BLACK(R.color.black),
     RED(android.R.color.holo_red_dark),
     BLUE(android.R.color.holo_blue_dark),
+    GRAY(android.R.color.darker_gray),
     GREEN(android.R.color.holo_green_dark),
     PINK(R.color.purple_200),
+    REDL(android.R.color.holo_red_light),
     TURQUOISE(R.color.teal_200),
-    YELLOW(android.R.color.holo_orange_light),
-    L_BLUE(android.R.color.holo_blue_bright),
+    PURPLE7(R.color.purple_700),
+    ORANGEL(android.R.color.holo_orange_light),
+    GREENL(android.R.color.holo_green_light),
+    BLUEL(android.R.color.holo_blue_bright),
+    PURPLE5(R.color.purple_500),
     ORANGE(android.R.color.holo_orange_dark),
     WHITE(R.color.white);
 
