@@ -1,4 +1,4 @@
-package com.example.canvas.koin
+package com.example.canvas
 
 import android.app.Application
 import com.example.canvas.module

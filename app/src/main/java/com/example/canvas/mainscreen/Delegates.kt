@@ -2,7 +2,7 @@ package com.example.canvas
 
 import android.graphics.PorterDuff
 import android.widget.ImageView
-import com.example.canvas.base.Item
+import com.example.canvas.mainscreen.Item
 import com.example.canvas.mainscreen.ToolItem
 import com.example.canvas.settings.TOOLS
 import com.hannesdorfmann.adapterdelegates4.AdapterDelegate
@@ -23,6 +23,19 @@ fun colorAdapterDelegate(
                 context.resources.getColor(item.color, null),
                 PorterDuff.Mode.SRC_IN
             )
+        }
+    }
+
+fun sizeAdapterDelegate(
+    onClick: (Int) -> Unit): AdapterDelegate<List<Item>> =
+    adapterDelegateLayoutContainer<ToolItem.SizeModel, Item>(
+        R.layout.item_size
+    ){
+        val size: ImageView = findViewById(R.id.size)
+        itemView.setOnClickListener { onClick(adapterPosition) }
+
+        bind { list ->
+
         }
     }
 
@@ -67,5 +80,7 @@ fun toolsAdapterDelegate(
         itemView.setOnClickListener {
             onToolsClick(adapterPosition)
         }
+
     }
+
 }
