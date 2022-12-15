@@ -7,10 +7,8 @@ import android.view.MotionEvent
 import android.view.View
 import android.view.ViewConfiguration
 import androidx.core.content.res.ResourcesCompat
-import com.example.canvas.DataEvent
 import com.example.canvas.feature.model.CanvasViewState
 import com.example.canvas.settings.COLOR
-import com.example.canvas.settings.SIZE
 import com.example.canvas.settings.TOOLS
 import kotlin.math.abs
 
@@ -139,10 +137,16 @@ class DrawView @JvmOverloads constructor(
         super.onDraw(canvas)
 
         //For a future project
-        canvas.drawARGB(70, 155, 255, 205)
+        canvas.drawARGB(80, 100, 200, 200)
+        canvas.drawCircle(100f, 200f, 50f, Paint(Color.RED))
+        canvas.drawRect(200f, 150f, 400f, 200f, Paint(Color.RED))
+        canvas.drawArc(300f, 250f, 600f, 500f, 30f, 300f, true, Paint(Color.RED))
+
+
 
         canvas.drawBitmap(extraBitmap, 0f, 0f, null)
         canvas.drawPath(drawing, paint)
         canvas.drawPath(curPath, paint)
     }
+
 }

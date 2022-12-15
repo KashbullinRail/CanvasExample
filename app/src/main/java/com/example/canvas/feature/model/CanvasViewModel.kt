@@ -9,6 +9,7 @@ import com.example.canvas.settings.SIZE
 import com.example.canvas.settings.TOOLS
 
 class CanvasViewModel : BaseViewModel<ViewState>() {
+
     override fun initialViewState(): ViewState =
         ViewState(
             colorList = enumValues<COLOR>().map { ToolItem.ColorModel(it.value) },
@@ -99,8 +100,6 @@ class CanvasViewModel : BaseViewModel<ViewState>() {
                     canvasViewState = previousState.canvasViewState.copy(size = selectedSize)
                 )
             }
-
-//
 
             is DataEvent.OnSetDefaultTools -> {
                 val toolsList = previousState.toolsList.map { model ->
