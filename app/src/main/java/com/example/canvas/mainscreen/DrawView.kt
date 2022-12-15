@@ -19,6 +19,7 @@ class DrawView @JvmOverloads constructor(
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
 ) : View(context, attrs, defStyleAttr) {
+
     companion object {
         private const val STROKE_WIDTH = 12f
     }
@@ -136,6 +137,10 @@ class DrawView @JvmOverloads constructor(
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
+
+        //For a future project
+        canvas.drawARGB(70, 155, 255, 205)
+
         canvas.drawBitmap(extraBitmap, 0f, 0f, null)
         canvas.drawPath(drawing, paint)
         canvas.drawPath(curPath, paint)
