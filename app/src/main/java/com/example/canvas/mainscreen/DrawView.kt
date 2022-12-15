@@ -136,17 +136,43 @@ class DrawView @JvmOverloads constructor(
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
 
-        //For a future project
+        //For a future project///////////////////////////////////
+        val pathEx = Path()
+        val paintEx = Paint()
+        paintEx.setColor(Color.BLUE)
+        val text = "данное приложение предназначено для рисования"
+
+        paintEx.textSize = 100f
         canvas.drawARGB(80, 100, 200, 200)
-        canvas.drawCircle(100f, 200f, 50f, Paint(Color.RED))
-        canvas.drawRect(200f, 150f, 400f, 200f, Paint(Color.RED))
-        canvas.drawArc(300f, 250f, 600f, 500f, 30f, 300f, true, Paint(Color.RED))
+        canvas.drawCircle(100f, 200f, 50f, paintEx)
+        canvas.drawRect(200f, 150f, 400f, 200f, paintEx)
+        canvas.drawArc(300f, 250f, 600f, 500f, 30f, 300f, true, paintEx)
+        canvas.drawText("text", 300f, 700f, paintEx)
+
+        //ThreeAngleAndCurveYellow
+        paintEx.setColor(Color.YELLOW)
+        pathEx.moveTo(100f, 750f)
+        pathEx.lineTo(350f, 850f)
+        pathEx.lineTo(450f, 750f)
+        canvas.drawPath(pathEx, paintEx)
+        pathEx.quadTo(100f, 1100f, 500f, 1300f)
+        canvas.drawPath(pathEx, paintEx)
+        pathEx.reset()
+
+        //CircleAndTextGreen
+        paintEx.style =Paint.Style.FILL
+        pathEx.addCircle(500f,1400f, 400f, Path.Direction.CW)
+        paintEx.setColor(Color.GREEN)
+        canvas.drawTextOnPath(text, pathEx, 0f, 60f, paintEx)
+        paintEx.style = Paint.Style.STROKE
+        canvas.drawPath(pathEx, paintEx)
+
 
 
 
         canvas.drawBitmap(extraBitmap, 0f, 0f, null)
-        canvas.drawPath(drawing, paint)
-        canvas.drawPath(curPath, paint)
+        canvas.drawPath(drawing, this.paint)
+        canvas.drawPath(curPath, this.paint)
     }
 
 }
