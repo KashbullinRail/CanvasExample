@@ -1,9 +1,9 @@
 package com.example.canvas
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageView
-import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import com.example.canvas.feature.model.CanvasViewModel
 import com.example.canvas.mainscreen.DrawView
@@ -32,6 +32,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
         toolsList = listOf(paletteLayout, toolsLayout, sizeLayout)
         viewModel.viewState.observe(this, ::render)
 
