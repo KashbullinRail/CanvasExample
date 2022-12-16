@@ -1,4 +1,4 @@
-package com.example.canvas.mainscreen
+package com.example.canvas.domain
 
 import android.content.Context
 import android.graphics.*
@@ -7,9 +7,10 @@ import android.view.MotionEvent
 import android.view.View
 import android.view.ViewConfiguration
 import androidx.core.content.res.ResourcesCompat
-import com.example.canvas.feature.model.CanvasViewState
-import com.example.canvas.settings.COLOR
-import com.example.canvas.settings.TOOLS
+import com.example.canvas.R
+import com.example.canvas.data.model.CanvasViewState
+import com.example.canvas.data.settings.COLOR
+import com.example.canvas.data.settings.TOOLS
 import kotlin.math.abs
 
 class DrawView @JvmOverloads constructor(
@@ -140,7 +141,7 @@ class DrawView @JvmOverloads constructor(
         val pathEx = Path()
         val paintEx = Paint()
         paintEx.setColor(Color.BLUE)
-        val text = "данное приложение предназначено для рисования"
+        val text = context.getString(R.string.circle_text_draw)
 
         paintEx.textSize = 100f
         canvas.drawARGB(80, 100, 200, 200)

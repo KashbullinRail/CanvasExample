@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".presentation.MainActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/toolbar"
@@ -17,7 +17,7 @@
         <ImageView
             android:id="@+id/ivTools"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginEnd="40dp"
             android:padding="16dp"
             android:src="@drawable/ic_baseline_brush_24"
@@ -28,7 +28,7 @@
         <ImageView
             android:id="@+id/ivClear"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginStart="40dp"
             android:padding="16dp"
             android:src="@drawable/ic_baseline_cleaning_services_24"
@@ -36,9 +36,23 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <ImageView
+            android:id="@+id/ivSetBackground"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="30dp"
+            android:layout_marginStart="30dp"
+            android:padding="16dp"
+            android:src="@drawable/ic_baseline_add_photo_alternate_24"
+            app:layout_constraintBottom_toBottomOf="@+id/ivTools"
+            app:layout_constraintEnd_toStartOf="@+id/ivTools"
+            app:layout_constraintStart_toEndOf="@+id/ivClear"
+            app:layout_constraintTop_toTopOf="@+id/ivTools" />
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <com.example.canvas.mainscreen.DrawView
+    <com.example.canvas.domain.DrawView
         android:id="@+id/viewDraw"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -46,16 +60,6 @@
         app:layout_constraintTop_toBottomOf="@id/toolbar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
-
-<!--    <include-->
-<!--        android:id="@+id/sizeLayout"-->
-<!--        layout="@layout/layout_tools"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:visibility="gone"-->
-<!--        app:layout_constraintBottom_toTopOf="@id/toolLayout"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent" />-->
 
     <include
         android:id="@+id/tvSizeLayout"

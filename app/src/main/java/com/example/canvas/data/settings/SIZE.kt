@@ -1,4 +1,4 @@
-package com.example.canvas.settings
+package com.example.canvas.data.settings
 
 
 enum class SIZE(

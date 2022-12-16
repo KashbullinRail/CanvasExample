@@ -3,9 +3,9 @@ package com.example.canvas
 import android.graphics.PorterDuff
 import android.widget.ImageView
 import android.widget.TextView
-import com.example.canvas.mainscreen.Item
-import com.example.canvas.mainscreen.ToolItem
-import com.example.canvas.settings.TOOLS
+import com.example.canvas.domain.Item
+import com.example.canvas.domain.ToolItem
+import com.example.canvas.data.settings.TOOLS
 import com.hannesdorfmann.adapterdelegates4.AdapterDelegate
 import com.hannesdorfmann.adapterdelegates4.dsl.adapterDelegateLayoutContainer
 
@@ -32,7 +32,7 @@ fun sizeAdapterDelegate(
     onClick: (Int) -> Unit
 ): AdapterDelegate<List<Item>> =
     adapterDelegateLayoutContainer<ToolItem.SizeModel, Item>(
-        R.layout.tv_item_size
+        R.layout.item_size
     ) {
         val size: TextView = findViewById(R.id.tvSize)
         itemView.setOnClickListener { onClick(adapterPosition) }

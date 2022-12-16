@@ -1,12 +1,18 @@
-package com.example.canvas
+package com.example.canvas.presentation
 
 import android.os.Bundle
+import android.provider.ContactsContract.CommonDataKinds.Im
 import android.widget.ImageView
+import android.widget.PopupMenu
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
-import com.example.canvas.feature.model.CanvasViewModel
-import com.example.canvas.mainscreen.DrawView
-import com.example.canvas.mainscreen.ToolsLayout
+import com.example.canvas.R
+import com.example.canvas.UiEvent
+import com.example.canvas.ViewState
+import com.example.canvas.data.model.CanvasViewModel
+import com.example.canvas.domain.DrawView
+import com.example.canvas.domain.ToolsLayout
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
@@ -27,6 +33,7 @@ class MainActivity : AppCompatActivity() {
     private val drawView: DrawView by lazy { findViewById(R.id.viewDraw) }
     private val ivClear: ImageView by lazy { findViewById(R.id.ivClear) }
     private val tvSizeLayout: ToolsLayout by lazy { findViewById(R.id.tvSizeLayout) }
+    private val ivSetBackgroun: ImageView by lazy { findViewById(R.id.ivSetBackground) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,6 +63,8 @@ class MainActivity : AppCompatActivity() {
             drawView.clear()
         }
 
+        popupMenu()
+
     }
 
     private fun render(viewState: ViewState) {
@@ -76,6 +85,57 @@ class MainActivity : AppCompatActivity() {
         }
 
         drawView.render(viewState.canvasViewState)
+
+    }
+
+    private fun popupMenu() {
+
+        val popupMenu = PopupMenu(this, ivSetBackgroun)
+        popupMenu.inflate(R.menu.item_menu)
+
+        popupMenu.setOnMenuItemClickListener {
+
+            when (it.itemId) {
+                R.id.itemM_ImageStorage -> {
+                    Toast.makeText(this, "${it.title}", Toast.LENGTH_SHORT).show()
+                    true
+                }
+                R.id.itemM_camera -> {
+                    Toast.makeText(this, "${it.title}", Toast.LENGTH_SHORT).show()
+                    true
+                }
+                R.id.itemM_searchPicture -> {
+                    Toast.makeText(this, "${it.title}", Toast.LENGTH_SHORT).show()
+                    true
+                }
+                R.id.itemM_setBackgroundFill -> {
+                    val showPopUp = PopUpFragment()
+                    showPopUp.show(supportFragmentManager, "showPopUp")
+                    Toast.makeText(this, "${it.title}", Toast.LENGTH_SHORT).show()
+                    true
+                }
+                else -> true
+            }
+
+        }
+
+        ivSetBackgroun.setOnClickListener {
+
+            try {
+                val popup = PopupMenu::class.java.getDeclaredField("mPopup")
+                popup.isAccessible = true
+                val menu = popup.get(popupMenu)
+                menu.javaClass
+                    .getDeclaredMethod("setForceShowIcon", Boolean::class.java)
+                    .invoke(menu, true)
+            } catch (e: java.lang.Exception) {
+                e.printStackTrace()
+            } finally {
+                popupMenu.show()
+            }
+            true
+
+        }
 
     }
 

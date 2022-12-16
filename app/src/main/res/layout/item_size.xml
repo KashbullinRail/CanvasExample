@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ImageView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/tttsize"
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/tvSize"
     android:layout_width="36dp"
     android:layout_height="36dp"
     android:layout_gravity="center_vertical"
-    android:src="@drawable/ic_baseline_zoom_out_map_24"/>
+    android:textSize="25sp"
+    android:textColor="@color/black"
+    android:textStyle="bold"
+    android:text=""/>

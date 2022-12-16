@@ -1,11 +1,11 @@
 package com.example.canvas
 
 import com.example.canvas.base.Event
-import com.example.canvas.feature.model.CanvasViewState
-import com.example.canvas.mainscreen.ToolItem
-import com.example.canvas.settings.COLOR
-import com.example.canvas.settings.SIZE
-import com.example.canvas.settings.TOOLS
+import com.example.canvas.data.model.CanvasViewState
+import com.example.canvas.domain.ToolItem
+import com.example.canvas.data.settings.COLOR
+import com.example.canvas.data.settings.SIZE
+import com.example.canvas.data.settings.TOOLS
 
 
 data class ViewState(
