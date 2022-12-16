@@ -5,50 +5,43 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:padding="10dp"
+    android:id="@+id/popupLayout"
     tools:context=".presentation.PopUpFragment">
 
-
     <Button
-        android:id="@+id/btnOpenCamera"
+        android:id="@+id/btnPreview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="44dp"
-        android:layout_marginTop="16dp"
-        android:text="@string/camera_popUp"
-        app:layout_constraintStart_toStartOf="parent"
+        android:text="@string/preview"
+        android:layout_margin="5dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnSetBackgroundFill"
+        app:layout_constraintEnd_toEndOf="@+id/btnSetBackgroundFill"
+        app:layout_constraintStart_toStartOf="@+id/btnSetBackgroundFill"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/btnSearchImage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/search_image_popUp"
-        app:layout_constraintBottom_toBottomOf="@+id/btnOpenCamera"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/btnOpenCamera"
-        app:layout_constraintTop_toTopOf="@+id/btnOpenCamera" />
-
-    <Button
-        android:id="@+id/btnOpenImageStorage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/image_storage_popUP"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/btnOpenCamera"
-        app:layout_constraintHorizontal_bias="0.4"
-        app:layout_constraintStart_toStartOf="@+id/btnOpenCamera"
-        app:layout_constraintTop_toBottomOf="@+id/btnOpenCamera"
-        app:layout_constraintVertical_bias="0.035" />
 
     <Button
         android:id="@+id/btnSetBackgroundFill"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/background_fill_popUp"
-        app:layout_constraintBottom_toBottomOf="@+id/btnOpenImageStorage"
+        android:layout_margin="5dp"
+        android:text="@string/set_pouring"
+        app:layout_constraintTop_toBottomOf="@+id/btnPreview"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/btnOpenImageStorage"
-        app:layout_constraintTop_toTopOf="@+id/btnOpenImageStorage" />
+        app:layout_constraintStart_toEndOf="@+id/etSetColor" />
+
+    <EditText
+        android:id="@+id/etSetColor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:hint="@string/ffffffff"
+        android:layout_margin="5dp"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/btnSetBackgroundFill"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/btnSetBackgroundFill" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

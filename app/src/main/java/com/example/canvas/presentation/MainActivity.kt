@@ -65,10 +65,6 @@ class MainActivity : AppCompatActivity() {
 
         popupMenu()
 
-//            val showPopUp = PopUpFragment()
-//            showPopUp.show(supportFragmentManager, "showPopUp")
-
-
     }
 
     private fun render(viewState: ViewState) {
@@ -113,6 +109,8 @@ class MainActivity : AppCompatActivity() {
                     true
                 }
                 R.id.itemM_setBackgroundFill -> {
+                    val showPopUp = PopUpFragment()
+                    showPopUp.show(supportFragmentManager, "showPopUp")
                     Toast.makeText(this, "${it.title}", Toast.LENGTH_SHORT).show()
                     true
                 }

@@ -10,4 +10,7 @@
     <string name="search_image_popUp">Search Image</string>
     <string name="image_storage_popUP">Image Storage</string>
     <string name="background_fill_popUp">Background Fill</string>
+    <string name="preview">Preview</string>
+    <string name="set_pouring">Set pouring</string>
+    <string name="ffffffff">#FFFFFFFF</string>
 </resources>
