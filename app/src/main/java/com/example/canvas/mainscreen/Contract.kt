@@ -7,6 +7,7 @@ import com.example.canvas.settings.COLOR
 import com.example.canvas.settings.SIZE
 import com.example.canvas.settings.TOOLS
 
+
 data class ViewState(
     val toolsList: List<ToolItem.ToolModel>,
     val colorList: List<ToolItem.ColorModel>,
@@ -19,10 +20,8 @@ data class ViewState(
 
 sealed class UiEvent : Event {
     data class OnPaletteClicked(val index: Int) : UiEvent()
-//    data class OnColorClick(val index: Int) : UiEvent()
     data class OnSizeClicked(val index: Int) : UiEvent()
     data class OnToolsClick(val index: Int) : UiEvent()
-//    object OnDrawViewClicked : UiEvent()
     object OnToolbarClicked : UiEvent()
 }
 

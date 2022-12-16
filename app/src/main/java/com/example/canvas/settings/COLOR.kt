@@ -3,11 +3,11 @@ package com.example.canvas.settings
 import androidx.annotation.ColorRes
 import com.example.canvas.R
 
+
 enum class COLOR(
     @ColorRes
     val value: Int
 ) {
-
     BLACK(R.color.black),
     RED(android.R.color.holo_red_dark),
     BLUE(android.R.color.holo_blue_dark),
@@ -28,4 +28,5 @@ enum class COLOR(
         private val map = values().associateBy(COLOR::value)
         fun from(color: Int) = map[color] ?: BLACK
     }
+
 }

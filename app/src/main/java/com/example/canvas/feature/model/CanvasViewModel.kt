@@ -8,6 +8,7 @@ import com.example.canvas.settings.COLOR
 import com.example.canvas.settings.SIZE
 import com.example.canvas.settings.TOOLS
 
+
 class CanvasViewModel : BaseViewModel<ViewState>() {
 
     override fun initialViewState(): ViewState =

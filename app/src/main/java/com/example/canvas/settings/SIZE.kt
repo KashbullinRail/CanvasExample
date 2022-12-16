@@ -1,5 +1,6 @@
 package com.example.canvas.settings
 
+
 enum class SIZE(
     val value: Int
 ) {
@@ -13,4 +14,5 @@ enum class SIZE(
         private val map = values().associateBy(SIZE::value)
         fun from(size: Int) = map[size] ?: SMALL
     }
+
 }

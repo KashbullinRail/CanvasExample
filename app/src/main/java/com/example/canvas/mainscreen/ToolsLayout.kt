@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.canvas.*
 import com.hannesdorfmann.adapterdelegates4.ListDelegationAdapter
 
+
 class ToolsLayout @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
@@ -15,7 +16,6 @@ class ToolsLayout @JvmOverloads constructor(
 ) : CardView(context, attrs, defStyleAttr) {
 
     private var onClick: (Int) -> Unit = {}
-
     private val toolsList: RecyclerView by lazy { findViewById(R.id.rvTools) }
 
     private val adapterDelegate = ListDelegationAdapter(
@@ -28,7 +28,6 @@ class ToolsLayout @JvmOverloads constructor(
         sizeAdapterDelegate {
             onClick(it)
         }
-
     )
 
     override fun onAttachedToWindow() {
@@ -45,4 +44,5 @@ class ToolsLayout @JvmOverloads constructor(
     fun setOnClickListener(onClick: (Int) -> Unit) {
         this.onClick = onClick
     }
+
 }

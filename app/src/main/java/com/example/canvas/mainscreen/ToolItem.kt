@@ -5,7 +5,9 @@ import com.example.canvas.settings.COLOR
 import com.example.canvas.settings.SIZE
 import com.example.canvas.settings.TOOLS
 
+
 sealed class ToolItem : Item {
+
     data class ColorModel(@ColorRes val color: Int) : ToolItem()
     data class SizeModel(val size: Int): ToolItem()
     data class ToolModel(
@@ -15,4 +17,5 @@ sealed class ToolItem : Item {
         val selectedSize: SIZE = SIZE.SMALL,
         val selectedColor: COLOR = COLOR.BLACK
     ) : ToolItem()
+
 }

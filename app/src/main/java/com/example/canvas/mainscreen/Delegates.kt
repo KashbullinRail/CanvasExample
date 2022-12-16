@@ -9,6 +9,7 @@ import com.example.canvas.settings.TOOLS
 import com.hannesdorfmann.adapterdelegates4.AdapterDelegate
 import com.hannesdorfmann.adapterdelegates4.dsl.adapterDelegateLayoutContainer
 
+
 fun colorAdapterDelegate(
     onClick: (Int) -> Unit
 ): AdapterDelegate<List<Item>> =
@@ -28,10 +29,11 @@ fun colorAdapterDelegate(
     }
 
 fun sizeAdapterDelegate(
-    onClick: (Int) -> Unit): AdapterDelegate<List<Item>> =
+    onClick: (Int) -> Unit
+): AdapterDelegate<List<Item>> =
     adapterDelegateLayoutContainer<ToolItem.SizeModel, Item>(
         R.layout.tv_item_size
-    ){
+    ) {
         val size: TextView = findViewById(R.id.tvSize)
         itemView.setOnClickListener { onClick(adapterPosition) }
 
@@ -51,36 +53,13 @@ fun toolsAdapterDelegate(
     bind { list ->
         ivTool.setImageResource(item.type.value)
 
-//        if (itemView.tvToolsText.visibility == View.VISIBLE) {
-//            itemView.tvToolsText.visibility = View.GONE
-//        }
-
         when (item.type) {
-
-//            TOOLS.SIZE -> {
-//                itemView.tvToolsText.visibility = View.VISIBLE
-//                itemView.tvToolsText.text = item.selectedSize.value.toString()
-//            }
-
-
-
-            TOOLS.SIZE -> {
-//                ivTool.setColorFilter(context.resources.getInteger(item.selectedSize.value))
-            }
-
-//            TOOLS.SIZE -> {
-//                val size: TextView = findViewById(R.id.tvSize)
-//                size.text = item.type.value.toString()
-//            }
-
-
             TOOLS.PALETTE -> {
                 ivTool.setColorFilter(
                     context.resources.getColor(item.selectedColor.value, null),
                     PorterDuff.Mode.SRC_IN
                 )
             }
-
             else -> {
                 if (item.isSelected) {
                     ivTool.setBackgroundResource(R.drawable.bg_selected)
@@ -93,7 +72,6 @@ fun toolsAdapterDelegate(
         itemView.setOnClickListener {
             onToolsClick(adapterPosition)
         }
-
     }
 
 }
