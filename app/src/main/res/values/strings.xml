@@ -13,4 +13,5 @@
     <string name="preview">Preview</string>
     <string name="set_pouring">Set pouring</string>
     <string name="ffffffff">#FFFFFFFF</string>
+    <string name="circle_text_draw">данное приложение предназначено для рисования</string>
 </resources>
