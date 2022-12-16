@@ -1,4 +1,4 @@
-package com.example.canvas.settings
+package com.example.canvas.data.settings
 
 import androidx.annotation.DrawableRes
 import com.example.canvas.R

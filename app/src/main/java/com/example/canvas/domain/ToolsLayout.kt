@@ -1,4 +1,4 @@
-package com.example.canvas.mainscreen
+package com.example.canvas.domain
 
 import android.content.Context
 import android.util.AttributeSet

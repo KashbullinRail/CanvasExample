@@ -1,9 +1,9 @@
-package com.example.canvas.mainscreen
+package com.example.canvas.domain
 
 import androidx.annotation.ColorRes
-import com.example.canvas.settings.COLOR
-import com.example.canvas.settings.SIZE
-import com.example.canvas.settings.TOOLS
+import com.example.canvas.data.settings.COLOR
+import com.example.canvas.data.settings.SIZE
+import com.example.canvas.data.settings.TOOLS
 
 
 sealed class ToolItem : Item {

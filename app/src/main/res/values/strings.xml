@@ -2,4 +2,12 @@
     <string name="app_name">Canvas</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="set_background_fill">Background Fill</string>
+    <string name="camera">Camera</string>
+    <string name="search_picture">Search Image</string>
+    <string name="open_image_storage">Open Image Storage</string>
+    <string name="camera_popUp">Camera</string>
+    <string name="search_image_popUp">Search Image</string>
+    <string name="image_storage_popUP">Image Storage</string>
+    <string name="background_fill_popUp">Background Fill</string>
 </resources>
