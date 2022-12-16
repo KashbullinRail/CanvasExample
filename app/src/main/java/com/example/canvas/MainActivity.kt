@@ -15,7 +15,7 @@ class MainActivity : AppCompatActivity() {
     companion object {
         private const val PALETTE_VIEW = 0
         private const val TOOLS_VIEW = 1
-        private const val SIZE_VIEW = 1
+        private const val SIZE_VIEW = 0
     }
     private val viewModel: CanvasViewModel by viewModel()
 
@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        toolsList = listOf(paletteLayout, toolsLayout, sizeLayout)
+        toolsList = listOf(paletteLayout, toolsLayout, sizeLayout, tvSizeLayout)
         viewModel.viewState.observe(this, ::render)
 
         paletteLayout.setOnClickListener {
@@ -48,7 +48,11 @@ class MainActivity : AppCompatActivity() {
             viewModel.processUiEvent(UiEvent.OnToolbarClicked)
         }
 
-        sizeLayout.setOnClickListener {
+//        sizeLayout.setOnClickListener {
+//            viewModel.processUiEvent(UiEvent.OnSizeClick(it))
+//        }
+
+        tvSizeLayout.setOnClickListener {
             viewModel.processUiEvent(UiEvent.OnSizeClick(it))
         }
 

@@ -4,4 +4,4 @@
     android:layout_width="36dp"
     android:layout_height="36dp"
     android:layout_gravity="center_vertical"
-    android:src="@drawable/ic_baseline_zoom_out_map_24"/>
+    android:src="@drawable/ic_baseline_two_24"/>

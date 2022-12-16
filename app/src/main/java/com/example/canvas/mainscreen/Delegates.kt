@@ -2,6 +2,7 @@ package com.example.canvas
 
 import android.graphics.PorterDuff
 import android.widget.ImageView
+import android.widget.TextView
 import com.example.canvas.mainscreen.Item
 import com.example.canvas.mainscreen.ToolItem
 import com.example.canvas.settings.TOOLS
@@ -29,13 +30,13 @@ fun colorAdapterDelegate(
 fun sizeAdapterDelegate(
     onClick: (Int) -> Unit): AdapterDelegate<List<Item>> =
     adapterDelegateLayoutContainer<ToolItem.SizeModel, Item>(
-        R.layout.item_size
+        R.layout.tv_item_size
     ){
-        val size: ImageView = findViewById(R.id.size)
+        val size: TextView = findViewById(R.id.tvSize)
         itemView.setOnClickListener { onClick(adapterPosition) }
 
         bind { list ->
-
+            size.
         }
     }
 
