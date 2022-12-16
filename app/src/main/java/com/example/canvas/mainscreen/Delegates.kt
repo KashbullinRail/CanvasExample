@@ -32,7 +32,7 @@ fun sizeAdapterDelegate(
     onClick: (Int) -> Unit
 ): AdapterDelegate<List<Item>> =
     adapterDelegateLayoutContainer<ToolItem.SizeModel, Item>(
-        R.layout.tv_item_size
+        R.layout.item_size
     ) {
         val size: TextView = findViewById(R.id.tvSize)
         itemView.setOnClickListener { onClick(adapterPosition) }
