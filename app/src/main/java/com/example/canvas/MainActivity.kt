@@ -1,6 +1,5 @@
 package com.example.canvas
 
-import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
@@ -15,7 +14,7 @@ class MainActivity : AppCompatActivity() {
     companion object {
         private const val PALETTE_VIEW = 0
         private const val TOOLS_VIEW = 1
-        private const val SIZE_VIEW = 0
+        private const val SIZE_VIEW = 2
     }
     private val viewModel: CanvasViewModel by viewModel()
 
@@ -23,7 +22,7 @@ class MainActivity : AppCompatActivity() {
 
     private val paletteLayout: ToolsLayout by lazy { findViewById(R.id.paletteLayout) }
     private val toolsLayout: ToolsLayout by lazy { findViewById(R.id.toolLayout) }
-    private val sizeLayout: ToolsLayout by lazy { findViewById(R.id.sizeLayout) }
+    private val sizeLayout: ToolsLayout by lazy { findViewById(R.id.tvSize) }
     private val ivTools: ImageView by lazy { findViewById(R.id.ivTools) }
     private val drawView: DrawView by lazy { findViewById(R.id.viewDraw) }
     private val ivClear: ImageView by lazy { findViewById(R.id.ivClear) }
@@ -33,7 +32,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        toolsList = listOf(paletteLayout, toolsLayout, sizeLayout, tvSizeLayout)
+        toolsList = listOf(paletteLayout, toolsLayout, tvSizeLayout)
         viewModel.viewState.observe(this, ::render)
 
         paletteLayout.setOnClickListener {
@@ -49,11 +48,11 @@ class MainActivity : AppCompatActivity() {
         }
 
 //        sizeLayout.setOnClickListener {
-//            viewModel.processUiEvent(UiEvent.OnSizeClick(it))
+//            viewModel.processUiEvent(UiEvent.OnSizeClicked(it))
 //        }
 
         tvSizeLayout.setOnClickListener {
-            viewModel.processUiEvent(UiEvent.OnSizeClick(it))
+            viewModel.processUiEvent(UiEvent.OnSizeClicked(it))
         }
 
         ivClear.setOnClickListener {

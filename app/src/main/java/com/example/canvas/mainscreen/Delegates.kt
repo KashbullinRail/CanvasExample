@@ -36,7 +36,7 @@ fun sizeAdapterDelegate(
         itemView.setOnClickListener { onClick(adapterPosition) }
 
         bind { list ->
-            size.
+            size.text = item.size.toString()
         }
     }
 
@@ -61,6 +61,18 @@ fun toolsAdapterDelegate(
 //                itemView.tvToolsText.visibility = View.VISIBLE
 //                itemView.tvToolsText.text = item.selectedSize.value.toString()
 //            }
+
+
+
+            TOOLS.SIZE -> {
+//                ivTool.setColorFilter(context.resources.getInteger(item.selectedSize.value))
+            }
+
+//            TOOLS.SIZE -> {
+//                val size: TextView = findViewById(R.id.tvSize)
+//                size.text = item.type.value.toString()
+//            }
+
 
             TOOLS.PALETTE -> {
                 ivTool.setColorFilter(

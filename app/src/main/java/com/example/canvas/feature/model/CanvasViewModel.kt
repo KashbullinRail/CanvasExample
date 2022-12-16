@@ -84,7 +84,7 @@ class CanvasViewModel : BaseViewModel<ViewState>() {
                 )
             }
 
-            is UiEvent.OnSizeClick -> {
+            is UiEvent.OnSizeClicked -> {
                 val selectedSize = SIZE.values()[event.index]
 
                 val toolsList = previousState.toolsList.map {
