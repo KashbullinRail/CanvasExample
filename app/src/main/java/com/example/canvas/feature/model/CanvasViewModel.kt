@@ -8,6 +8,7 @@ import com.example.canvas.settings.COLOR
 import com.example.canvas.settings.SIZE
 import com.example.canvas.settings.TOOLS
 
+
 class CanvasViewModel : BaseViewModel<ViewState>() {
 
     override fun initialViewState(): ViewState =
@@ -84,7 +85,7 @@ class CanvasViewModel : BaseViewModel<ViewState>() {
                 )
             }
 
-            is UiEvent.OnSizeClick -> {
+            is UiEvent.OnSizeClicked -> {
                 val selectedSize = SIZE.values()[event.index]
 
                 val toolsList = previousState.toolsList.map {
@@ -104,7 +105,7 @@ class CanvasViewModel : BaseViewModel<ViewState>() {
             is DataEvent.OnSetDefaultTools -> {
                 val toolsList = previousState.toolsList.map { model ->
                     if (model.type == event.tool) {
-                        model.copy(isSelected = true, selectedColor = event.color)
+                        model.copy(isSelected = true, selectedColor = event.color, selectedSize = event.size)
                     } else {
                         model.copy(isSelected = false)
                     }

@@ -2,11 +2,13 @@ package com.example.canvas
 
 import android.graphics.PorterDuff
 import android.widget.ImageView
+import android.widget.TextView
 import com.example.canvas.mainscreen.Item
 import com.example.canvas.mainscreen.ToolItem
 import com.example.canvas.settings.TOOLS
 import com.hannesdorfmann.adapterdelegates4.AdapterDelegate
 import com.hannesdorfmann.adapterdelegates4.dsl.adapterDelegateLayoutContainer
+
 
 fun colorAdapterDelegate(
     onClick: (Int) -> Unit
@@ -27,15 +29,16 @@ fun colorAdapterDelegate(
     }
 
 fun sizeAdapterDelegate(
-    onClick: (Int) -> Unit): AdapterDelegate<List<Item>> =
+    onClick: (Int) -> Unit
+): AdapterDelegate<List<Item>> =
     adapterDelegateLayoutContainer<ToolItem.SizeModel, Item>(
-        R.layout.item_size
-    ){
-        val size: ImageView = findViewById(R.id.size)
+        R.layout.tv_item_size
+    ) {
+        val size: TextView = findViewById(R.id.tvSize)
         itemView.setOnClickListener { onClick(adapterPosition) }
 
         bind { list ->
-
+            size.text = item.size.toString()
         }
     }
 
@@ -50,24 +53,13 @@ fun toolsAdapterDelegate(
     bind { list ->
         ivTool.setImageResource(item.type.value)
 
-//        if (itemView.tvToolsText.visibility == View.VISIBLE) {
-//            itemView.tvToolsText.visibility = View.GONE
-//        }
-
         when (item.type) {
-
-//            TOOLS.SIZE -> {
-//                itemView.tvToolsText.visibility = View.VISIBLE
-//                itemView.tvToolsText.text = item.selectedSize.value.toString()
-//            }
-
             TOOLS.PALETTE -> {
                 ivTool.setColorFilter(
                     context.resources.getColor(item.selectedColor.value, null),
                     PorterDuff.Mode.SRC_IN
                 )
             }
-
             else -> {
                 if (item.isSelected) {
                     ivTool.setBackgroundResource(R.drawable.bg_selected)
@@ -80,7 +72,6 @@ fun toolsAdapterDelegate(
         itemView.setOnClickListener {
             onToolsClick(adapterPosition)
         }
-
     }
 
 }

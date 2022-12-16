@@ -1,6 +1,5 @@
 package com.example.canvas
 
-import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
@@ -10,20 +9,20 @@ import com.example.canvas.mainscreen.DrawView
 import com.example.canvas.mainscreen.ToolsLayout
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
+
 class MainActivity : AppCompatActivity() {
 
     companion object {
         private const val PALETTE_VIEW = 0
         private const val TOOLS_VIEW = 1
-        private const val SIZE_VIEW = 1
+        private const val SIZE_VIEW = 2
     }
-    private val viewModel: CanvasViewModel by viewModel()
 
+    private val viewModel: CanvasViewModel by viewModel()
     private var toolsList: List<ToolsLayout> = listOf()
 
     private val paletteLayout: ToolsLayout by lazy { findViewById(R.id.paletteLayout) }
     private val toolsLayout: ToolsLayout by lazy { findViewById(R.id.toolLayout) }
-    private val sizeLayout: ToolsLayout by lazy { findViewById(R.id.sizeLayout) }
     private val ivTools: ImageView by lazy { findViewById(R.id.ivTools) }
     private val drawView: DrawView by lazy { findViewById(R.id.viewDraw) }
     private val ivClear: ImageView by lazy { findViewById(R.id.ivClear) }
@@ -33,7 +32,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        toolsList = listOf(paletteLayout, toolsLayout, sizeLayout)
+        toolsList = listOf(paletteLayout, toolsLayout, tvSizeLayout)
+
         viewModel.viewState.observe(this, ::render)
 
         paletteLayout.setOnClickListener {
@@ -48,17 +48,13 @@ class MainActivity : AppCompatActivity() {
             viewModel.processUiEvent(UiEvent.OnToolbarClicked)
         }
 
-        sizeLayout.setOnClickListener {
-            viewModel.processUiEvent(UiEvent.OnSizeClick(it))
+        tvSizeLayout.setOnClickListener {
+            viewModel.processUiEvent(UiEvent.OnSizeClicked(it))
         }
 
         ivClear.setOnClickListener {
             drawView.clear()
         }
-
-//        tvSize.setOnClickListener {
-//            viewModel.processUiEvent(UiEvent.OnSizeClick)
-//        }
 
     }
 
@@ -80,5 +76,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         drawView.render(viewState.canvasViewState)
+
     }
+
 }
