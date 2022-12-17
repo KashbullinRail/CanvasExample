@@ -11,6 +11,7 @@ import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
+import com.example.canvas.R
 import com.example.canvas.databinding.ActivityImageSearchBinding
 import java.net.URLEncoder
 import java.nio.charset.StandardCharsets
@@ -40,7 +41,7 @@ class ImageSearchActivity : AppCompatActivity() {
         }
 
         binding.checkBox.setOnClickListener {
-            enableTV()
+            enableTextView()
         }
 
         binding.btnSetBackgroundImage.setOnClickListener {
@@ -54,7 +55,7 @@ class ImageSearchActivity : AppCompatActivity() {
         val keyword = binding.etWordForSearch.text.toString()
 
         if (binding.checkBox.isChecked && keyword.isBlank()) {
-            binding.etWordForSearch.error = "Not input text"
+            binding.etWordForSearch.error = R.string.not_input_text.toString()
             return true
         }
 
@@ -63,8 +64,8 @@ class ImageSearchActivity : AppCompatActivity() {
 
         Glide.with(this@ImageSearchActivity)
             .load(
-                "$URL_IMAGE" +
-                        "${if (binding.checkBox.isChecked) "?$inputWord" else ""}"
+                URL_IMAGE +
+                        if (binding.checkBox.isChecked) "?$inputWord" else ""
             )
             .skipMemoryCache(true)
             .diskCacheStrategy(DiskCacheStrategy.NONE)
@@ -95,7 +96,7 @@ class ImageSearchActivity : AppCompatActivity() {
 
     }
 
-    fun enableTV() = with(binding) {
+    fun enableTextView() = with(binding) {
         if (checkBox.isChecked) {
             etWordForSearch.visibility = View.VISIBLE
         } else {

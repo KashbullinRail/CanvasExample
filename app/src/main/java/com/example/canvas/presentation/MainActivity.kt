@@ -2,7 +2,6 @@ package com.example.canvas.presentation
 
 import android.content.Intent
 import android.os.Bundle
-import android.provider.ContactsContract.CommonDataKinds.Im
 import android.util.Log
 import android.widget.ImageView
 import android.widget.PopupMenu
@@ -35,11 +34,11 @@ class MainActivity : AppCompatActivity() {
 
     private val paletteLayout: ToolsLayout by lazy { findViewById(R.id.paletteLayout) }
     private val toolsLayout: ToolsLayout by lazy { findViewById(R.id.toolLayout) }
+    private val sizeLayout: ToolsLayout by lazy { findViewById(R.id.sizeLayout) }
     private val ivTools: ImageView by lazy { findViewById(R.id.ivTools) }
     private val drawView: DrawView by lazy { findViewById(R.id.viewDraw) }
     private val ivClear: ImageView by lazy { findViewById(R.id.ivClear) }
-    private val tvSizeLayout: ToolsLayout by lazy { findViewById(R.id.tvSizeLayout) }
-    private val ivSetBackgroun: ImageView by lazy { findViewById(R.id.ivSetBackground) }
+    private val ivSetBackground: ImageView by lazy { findViewById(R.id.ivSetBackground) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,7 +46,7 @@ class MainActivity : AppCompatActivity() {
 
         launcherImageSearchActivity()
 
-        toolsList = listOf(paletteLayout, toolsLayout, tvSizeLayout)
+        toolsList = listOf(paletteLayout, toolsLayout, sizeLayout)
 
         viewModel.viewState.observe(this, ::render)
 
@@ -63,7 +62,7 @@ class MainActivity : AppCompatActivity() {
             viewModel.processUiEvent(UiEvent.OnToolbarClicked)
         }
 
-        tvSizeLayout.setOnClickListener {
+        sizeLayout.setOnClickListener {
             viewModel.processUiEvent(UiEvent.OnSizeClicked(it))
         }
 
@@ -98,29 +97,31 @@ class MainActivity : AppCompatActivity() {
 
     private fun popupMenu() {
 
-        val popupMenu = PopupMenu(this, ivSetBackgroun)
+        val popupMenu = PopupMenu(this, ivSetBackground)
         popupMenu.inflate(R.menu.item_menu)
 
         popupMenu.setOnMenuItemClickListener {
 
             when (it.itemId) {
                 R.id.itemM_ImageStorage -> {
-                    Toast.makeText(this, "${it.title}", Toast.LENGTH_SHORT).show()
+                    // TODO create image storage open code
+                    Toast(it.title.toString())
                     true
                 }
                 R.id.itemM_camera -> {
-                    Toast.makeText(this, "${it.title}", Toast.LENGTH_SHORT).show()
+                    // TODO create open camera2 code
+                    Toast("Open ${it.title.toString()}")
                     true
                 }
                 R.id.itemM_searchPicture -> {
+                    Toast(it.title.toString())
                     launcher?.launch(Intent(this, ImageSearchActivity::class.java))
-                    finish()
                    true
                 }
                 R.id.itemM_setBackgroundFill -> {
+                    Toast(it.title.toString())
                     val showPopUp = PopUpFragment()
                     showPopUp.show(supportFragmentManager, "showPopUp")
-                    Toast.makeText(this, "${it.title}", Toast.LENGTH_SHORT).show()
                     true
                 }
                 else -> true
@@ -128,7 +129,7 @@ class MainActivity : AppCompatActivity() {
 
         }
 
-        ivSetBackgroun.setOnClickListener {
+        ivSetBackground.setOnClickListener {
 
             try {
                 val popup = PopupMenu::class.java.getDeclaredField("mPopup")
@@ -153,9 +154,14 @@ class MainActivity : AppCompatActivity() {
             result:ActivityResult ->
             if (result.resultCode == RESULT_OK) {
                 val data =result.data?.getStringExtra(KEY_IMAGE_SEARCH)
+                // TODO apply for background the resulting image code
                 Log.d("launcher", "result $data")
             }
         }
+    }
+
+    private fun Toast(text: String){
+        Toast.makeText(this, text, Toast.LENGTH_SHORT).show()
     }
 
 }
