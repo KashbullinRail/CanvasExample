@@ -37,7 +37,12 @@ class DrawView @JvmOverloads constructor(
     private val touchTolerance = ViewConfiguration.get(context).scaledTouchSlop
 
     private var startX = 0f
+    private var endX = 0f
     private var startY = 0f
+    private var endY = 0f
+    private var circleActive = false
+    private var circleStart = false
+    val text = context.getString(R.string.circle_text_draw)
 
     // Path representing
     private val drawing = Path() // the drawing
@@ -81,6 +86,7 @@ class DrawView @JvmOverloads constructor(
         paint.strokeWidth = state.size.value.toFloat()
         when (state.tools) {
             TOOLS.DASH -> {
+                circleActive = false
                 paint.pathEffect = DashPathEffect(
                     floatArrayOf(
                         state.size.value.toFloat() * 2,
@@ -91,10 +97,12 @@ class DrawView @JvmOverloads constructor(
                 )
             }
             TOOLS.CIRCLE -> {
-                startX = currentX
-                startY = currentY
+                circleActive = true
             }
-            else -> paint.pathEffect = null
+            else -> {
+                paint.pathEffect = null
+                circleActive = false
+            }
         }
     }
 
@@ -103,20 +111,31 @@ class DrawView @JvmOverloads constructor(
         invalidate()
     }
 
-    fun setOnClickField(onClickField: () -> Unit) {
-        onClick = onClickField
-    }
+//    fun setOnClickField(onClickField: () -> Unit) {
+//        onClick = onClickField
+//    }
 
     override fun onTouchEvent(event: MotionEvent): Boolean {
         motionTouchEventX = event.x
         motionTouchEventY = event.y
 
-        when (event.action) {
-            MotionEvent.ACTION_DOWN -> touchStart()
-            MotionEvent.ACTION_MOVE -> touchMove()
-            MotionEvent.ACTION_UP -> touchUp()
+        if (circleActive == false) {
+            when (event.action) {
+                MotionEvent.ACTION_DOWN -> touchStart()
+                MotionEvent.ACTION_MOVE -> touchMove()
+                MotionEvent.ACTION_UP -> touchUp()
+            }
+
+        } else {
+            textDraw()
         }
         return true
+    }
+
+    private fun textDraw() {
+        touchStart()
+
+        circleStart = true
     }
 
     private fun restartCurrentXY() {
@@ -128,6 +147,8 @@ class DrawView @JvmOverloads constructor(
         onClick()
         path.reset()
         path.moveTo(motionTouchEventX, motionTouchEventY)
+        startX = currentX
+        startY = currentY
         restartCurrentXY()
     }
 
@@ -149,7 +170,9 @@ class DrawView @JvmOverloads constructor(
     }
 
     private fun touchUp() {
+        circleStart = false
         drawing.addPath(curPath)
+
         curPath.reset()
     }
 
@@ -166,35 +189,38 @@ class DrawView @JvmOverloads constructor(
 
         //For a future project///////////////////////////////////
 
-        val text = context.getString(R.string.circle_text_draw)
 
 //        paintEx.textSize = 100f
-        paint.textSize = 100f
-        canvas.drawARGB(80, 100, 200, 200)
-        canvas.drawCircle(100f, 200f, 50f, paint)
-        canvas.drawRect(200f, 150f, 400f, 200f, paint)
-        canvas.drawArc(300f, 250f, 600f, 500f, 30f, 300f, true, paint)
-        canvas.drawText("text", 300f, 700f, paint)
-        canvas.drawRect(startX, startY, 400f, 1200f, paint)
+//        paint.textSize = 100f
+//        canvas.drawARGB(80, 100, 200, 200)
+//        canvas.drawCircle(100f, 200f, 50f, paint)
+//        canvas.drawRect(200f, 150f, 400f, 200f, paint)
+//        canvas.drawArc(300f, 250f, 600f, 500f, 30f, 300f, true, paint)
+//        canvas.drawText("text", 300f, 700f, paint)
+//        canvas.drawRect(startX, startY, 400f, 1200f, paint)
 
 
-//        //ThreeAngleAndCurveYellow
-//        paintEx.setColor(Color.YELLOW)
-//        pathEx.moveTo(100f, 750f)
-//        pathEx.lineTo(350f, 850f)
-//        pathEx.lineTo(450f, 750f)
-//        canvas.drawPath(pathEx, paintEx)
-//        pathEx.quadTo(100f, 1100f, 500f, 1300f)
-//        canvas.drawPath(pathEx, paintEx)
-//        pathEx.reset()
-//
-//        //CircleAndTextGreen
-//        paintEx.style =Paint.Style.FILL
-//        pathEx.addCircle(500f,1400f, 400f, Path.Direction.CW)
-//        paintEx.setColor(Color.GREEN)
-//        canvas.drawTextOnPath(text, pathEx, 0f, 60f, paintEx)
-//        paintEx.style = Paint.Style.STROKE
-//        canvas.drawPath(pathEx, paintEx)
+        //ThreeAngleAndCurveYellow
+//        path.moveTo(100f, 750f)
+//        path.lineTo(350f, 850f)
+//        path.lineTo(450f, 750f)
+//        canvas.drawPath(path, paint)
+//        path.quadTo(100f, 1100f, 500f, 1300f)
+//        canvas.drawPath(path, paint)
+
+        //
+        //CircleAndTextGreen
+       if (circleStart){
+//           paint.style = Paint.Style.FILL
+           path.addCircle(startX, startY, 400f, Path.Direction.CW)
+//           canvas.drawTextOnPath(text, path, 0f, 60f, paint)
+           paint.style = Paint.Style.STROKE
+           canvas.drawPath(path, paint)
+           circleStart = false
+       }
+
+
+
 
 
         canvas.drawBitmap(extraBitmap, 0f, 0f, null)
