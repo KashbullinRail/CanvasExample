@@ -16,8 +16,6 @@ import java.net.URLEncoder
 import java.nio.charset.StandardCharsets
 
 
-const val URL_IMAGE = "https://source.unsplash.com/random"
-
 class ImageSearchActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityImageSearchBinding
@@ -30,17 +28,23 @@ class ImageSearchActivity : AppCompatActivity() {
 
         binding.etWordForSearch.visibility = View.GONE
 
-        binding.btnGetRI.setOnClickListener {
+        binding.btnGetImage.setOnClickListener {
             getOnRandomImage()
         }
+
         binding.etWordForSearch.setOnEditorActionListener { v, actionId, event ->
             if (actionId == EditorInfo.IME_ACTION_SEARCH) {
                 return@setOnEditorActionListener getOnRandomImage()
             }
             return@setOnEditorActionListener false
         }
+
         binding.checkBox.setOnClickListener {
             enableTV()
+        }
+
+        binding.btnSetBackgroundImage.setOnClickListener {
+            // TODO save image in storage and intent directory for MainActivity
         }
 
     }
@@ -102,7 +106,7 @@ class ImageSearchActivity : AppCompatActivity() {
 
     private fun launchResult() {
         val intent = Intent()
-        intent.putExtra(KEY_IMAGE_SEARCH, "ok") //TODO
+        intent.putExtra(KEY_IMAGE_SEARCH, "ok") //TODO write directory image storage
         setResult(RESULT_OK, intent)
         finish()
     }

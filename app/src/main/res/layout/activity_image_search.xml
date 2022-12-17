@@ -17,10 +17,11 @@
         tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
     <Button
-        android:id="@+id/btnGetRI"
+        android:id="@+id/btnGetImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/get_random_image"
+        android:textAllCaps="false"
         app:layout_constraintEnd_toEndOf="@+id/ivImage"
         app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="@+id/ivImage"
@@ -35,9 +36,9 @@
         android:hint="@string/input_search_text"
         android:imeOptions="actionSearch"
         android:importantForAutofill="yes"
-        app:layout_constraintEnd_toEndOf="@+id/btnGetRI"
-        app:layout_constraintStart_toStartOf="@+id/btnGetRI"
-        app:layout_constraintTop_toBottomOf="@+id/btnGetRI" />
+        app:layout_constraintEnd_toEndOf="@+id/btnGetImage"
+        app:layout_constraintStart_toStartOf="@+id/btnGetImage"
+        app:layout_constraintTop_toBottomOf="@+id/btnGetImage" />
 
     <CheckBox
         android:id="@+id/checkBox"
@@ -45,8 +46,8 @@
         android:layout_height="wrap_content"
         android:text="@string/enable"
         android:layout_marginEnd="10dp"
-        app:layout_constraintBottom_toBottomOf="@+id/btnGetRI"
-        app:layout_constraintEnd_toStartOf="@+id/btnGetRI"
+        app:layout_constraintBottom_toBottomOf="@+id/btnGetImage"
+        app:layout_constraintEnd_toStartOf="@+id/btnGetImage"
         app:layout_constraintTop_toBottomOf="@+id/ivImage" />
 
     <ProgressBar
@@ -59,5 +60,16 @@
         app:layout_constraintEnd_toEndOf="@+id/ivImage"
         app:layout_constraintStart_toStartOf="@+id/ivImage"
         app:layout_constraintTop_toTopOf="@+id/ivImage" />
+
+    <Button
+        android:id="@+id/btnSetBackgroundImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/set_draw"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toBottomOf="@+id/btnGetImage"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btnGetImage"
+        app:layout_constraintTop_toBottomOf="@+id/ivImage" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
