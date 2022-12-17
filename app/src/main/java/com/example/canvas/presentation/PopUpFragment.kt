@@ -33,7 +33,6 @@ class PopUpFragment : DialogFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         //TODO -> set background color for popupFragment
-
         //TODO -> set background color for DrawView
 
     }
