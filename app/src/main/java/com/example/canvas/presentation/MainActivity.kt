@@ -1,10 +1,15 @@
 package com.example.canvas.presentation
 
+import android.content.Intent
 import android.os.Bundle
 import android.provider.ContactsContract.CommonDataKinds.Im
+import android.util.Log
 import android.widget.ImageView
 import android.widget.PopupMenu
 import android.widget.Toast
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import com.example.canvas.R
@@ -24,6 +29,7 @@ class MainActivity : AppCompatActivity() {
         private const val SIZE_VIEW = 2
     }
 
+    private var launcher: ActivityResultLauncher<Intent>? = null
     private val viewModel: CanvasViewModel by viewModel()
     private var toolsList: List<ToolsLayout> = listOf()
 
@@ -38,6 +44,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        launcherImageSearchActivity()
 
         toolsList = listOf(paletteLayout, toolsLayout, tvSizeLayout)
 
@@ -105,8 +113,9 @@ class MainActivity : AppCompatActivity() {
                     true
                 }
                 R.id.itemM_searchPicture -> {
-                    Toast.makeText(this, "${it.title}", Toast.LENGTH_SHORT).show()
-                    true
+                    launcher?.launch(Intent(this, ImageSearchActivity::class.java))
+                    finish()
+                   true
                 }
                 R.id.itemM_setBackgroundFill -> {
                     val showPopUp = PopUpFragment()
@@ -137,6 +146,16 @@ class MainActivity : AppCompatActivity() {
 
         }
 
+    }
+
+    private fun launcherImageSearchActivity(){
+        launcher =registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+            result:ActivityResult ->
+            if (result.resultCode == RESULT_OK) {
+                val data =result.data?.getStringExtra(KEY_IMAGE_SEARCH)
+                Log.d("launcher", "result $data")
+            }
+        }
     }
 
 }

@@ -1,5 +1,6 @@
 package com.example.canvas.presentation
 
+import android.content.Intent
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.View
@@ -27,6 +28,8 @@ class ImageSearchActivity : AppCompatActivity() {
         binding = ActivityImageSearchBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        binding.etWordForSearch.visibility = View.GONE
+
         binding.btnGetRI.setOnClickListener {
             getOnRandomImage()
         }
@@ -45,16 +48,19 @@ class ImageSearchActivity : AppCompatActivity() {
     fun getOnRandomImage(): Boolean {
 
         val keyword = binding.etWordForSearch.text.toString()
+
         if (binding.checkBox.isChecked && keyword.isBlank()) {
             binding.etWordForSearch.error = "Not input text"
             return true
         }
+
         val inputWord = URLEncoder.encode(keyword, StandardCharsets.UTF_8.name())
         binding.progressBar.visibility = View.VISIBLE
-        Glide.with(this)
+
+        Glide.with(this@ImageSearchActivity)
             .load(
-                URL_IMAGE +
-                        if (binding.checkBox.isChecked) "?$inputWord" else ""
+                "$URL_IMAGE" +
+                        "${if (binding.checkBox.isChecked) "?$inputWord" else ""}"
             )
             .skipMemoryCache(true)
             .diskCacheStrategy(DiskCacheStrategy.NONE)
@@ -89,8 +95,16 @@ class ImageSearchActivity : AppCompatActivity() {
         if (checkBox.isChecked) {
             etWordForSearch.visibility = View.VISIBLE
         } else {
+            etWordForSearch.setText("")
             etWordForSearch.visibility = View.GONE
         }
+    }
+
+    private fun launchResult() {
+        val intent = Intent()
+        intent.putExtra(KEY_IMAGE_SEARCH, "ok") //TODO
+        setResult(RESULT_OK, intent)
+        finish()
     }
 
 }
