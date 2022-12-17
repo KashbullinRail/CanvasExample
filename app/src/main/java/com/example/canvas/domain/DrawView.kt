@@ -138,35 +138,37 @@ class DrawView @JvmOverloads constructor(
         super.onDraw(canvas)
 
         //For a future project///////////////////////////////////
-        val pathEx = Path()
-        val paintEx = Paint()
-        paintEx.setColor(Color.BLUE)
+//        val pathEx = Path()
+//        val paintEx = Paint()
+//        paintEx.setColor(Color.BLUE)
+
         val text = context.getString(R.string.circle_text_draw)
 
-        paintEx.textSize = 100f
+//        paintEx.textSize = 100f
+        paint.textSize = 100f
         canvas.drawARGB(80, 100, 200, 200)
-        canvas.drawCircle(100f, 200f, 50f, paintEx)
-        canvas.drawRect(200f, 150f, 400f, 200f, paintEx)
-        canvas.drawArc(300f, 250f, 600f, 500f, 30f, 300f, true, paintEx)
-        canvas.drawText("text", 300f, 700f, paintEx)
+        canvas.drawCircle(100f, 200f, 50f, paint)
+        canvas.drawRect(200f, 150f, 400f, 200f, paint)
+        canvas.drawArc(300f, 250f, 600f, 500f, 30f, 300f, true, paint)
+        canvas.drawText("text", 300f, 700f, paint)
 
-        //ThreeAngleAndCurveYellow
-        paintEx.setColor(Color.YELLOW)
-        pathEx.moveTo(100f, 750f)
-        pathEx.lineTo(350f, 850f)
-        pathEx.lineTo(450f, 750f)
-        canvas.drawPath(pathEx, paintEx)
-        pathEx.quadTo(100f, 1100f, 500f, 1300f)
-        canvas.drawPath(pathEx, paintEx)
-        pathEx.reset()
-
-        //CircleAndTextGreen
-        paintEx.style =Paint.Style.FILL
-        pathEx.addCircle(500f,1400f, 400f, Path.Direction.CW)
-        paintEx.setColor(Color.GREEN)
-        canvas.drawTextOnPath(text, pathEx, 0f, 60f, paintEx)
-        paintEx.style = Paint.Style.STROKE
-        canvas.drawPath(pathEx, paintEx)
+//        //ThreeAngleAndCurveYellow
+//        paintEx.setColor(Color.YELLOW)
+//        pathEx.moveTo(100f, 750f)
+//        pathEx.lineTo(350f, 850f)
+//        pathEx.lineTo(450f, 750f)
+//        canvas.drawPath(pathEx, paintEx)
+//        pathEx.quadTo(100f, 1100f, 500f, 1300f)
+//        canvas.drawPath(pathEx, paintEx)
+//        pathEx.reset()
+//
+//        //CircleAndTextGreen
+//        paintEx.style =Paint.Style.FILL
+//        pathEx.addCircle(500f,1400f, 400f, Path.Direction.CW)
+//        paintEx.setColor(Color.GREEN)
+//        canvas.drawTextOnPath(text, pathEx, 0f, 60f, paintEx)
+//        paintEx.style = Paint.Style.STROKE
+//        canvas.drawPath(pathEx, paintEx)
 
 
 
