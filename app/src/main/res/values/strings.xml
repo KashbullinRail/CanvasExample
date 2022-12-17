@@ -1,6 +1,7 @@
 <resources>
+
     <string name="app_name">Canvas</string>
-    <!-- TODO: Remove or change this placeholder text -->
+
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="set_background_fill">Background Fill</string>
     <string name="camera">Camera</string>
@@ -14,4 +15,10 @@
     <string name="set_pouring">Set pouring</string>
     <string name="ffffffff">#FFFFFFFF</string>
     <string name="circle_text_draw">данное приложение предназначено для рисования</string>
+    <string name="input_search_text">Input search text</string>
+    <string name="get_random_image">Get Image</string>
+    <string name="input_image_keyword">Input Image Keyword</string>
+    <string name="enable">Enable</string>
+    <string name="set_draw">Set Draw</string>
+
 </resources>
