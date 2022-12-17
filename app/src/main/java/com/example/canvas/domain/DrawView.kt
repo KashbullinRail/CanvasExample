@@ -26,7 +26,7 @@ class DrawView @JvmOverloads constructor(
     private lateinit var extraCanvas: Canvas
     private lateinit var extraBitmap: Bitmap
 
-    private var drawColor = ResourcesCompat.getColor(resources, COLOR.BLACK.value, null)
+    private var drawColor = ResourcesCompat.getColor(resources, COLOR.GREEN.value, null)
 
     private var path = Path()
     private var motionTouchEventX = 0f
@@ -35,6 +35,9 @@ class DrawView @JvmOverloads constructor(
     private var currentX = 0f
     private var currentY = 0f
     private val touchTolerance = ViewConfiguration.get(context).scaledTouchSlop
+
+    private var startX = 0f
+    private var startY = 0f
 
     // Path representing
     private val drawing = Path() // the drawing
@@ -54,21 +57,44 @@ class DrawView @JvmOverloads constructor(
         strokeWidth = STROKE_WIDTH // default: Hairline-width (really thin)
     }
 
+//    fun render(state: CanvasViewState) {
+//        drawColor = ResourcesCompat.getColor(resources, state.color.value, null)
+//        paint.color = drawColor
+//        paint.strokeWidth = state.size.value.toFloat()
+//        if (state.tools == TOOLS.DASH) {
+//            paint.pathEffect = DashPathEffect(
+//                floatArrayOf(
+//                    state.size.value.toFloat() * 2,
+//                    state.size.value.toFloat() * 2,
+//                    state.size.value.toFloat() * 2,
+//                    state.size.value.toFloat() * 2
+//                ), 0f
+//            )
+//        } else {
+//            paint.pathEffect = null
+//        }
+//    }
+
     fun render(state: CanvasViewState) {
         drawColor = ResourcesCompat.getColor(resources, state.color.value, null)
         paint.color = drawColor
         paint.strokeWidth = state.size.value.toFloat()
-        if (state.tools == TOOLS.DASH) {
-            paint.pathEffect = DashPathEffect(
-                floatArrayOf(
-                    state.size.value.toFloat() * 2,
-                    state.size.value.toFloat() * 2,
-                    state.size.value.toFloat() * 2,
-                    state.size.value.toFloat() * 2
-                ), 0f
-            )
-        } else {
-            paint.pathEffect = null
+        when (state.tools) {
+            TOOLS.DASH -> {
+                paint.pathEffect = DashPathEffect(
+                    floatArrayOf(
+                        state.size.value.toFloat() * 2,
+                        state.size.value.toFloat() * 2,
+                        state.size.value.toFloat() * 2,
+                        state.size.value.toFloat() * 2
+                    ), 0f
+                )
+            }
+            TOOLS.CIRCLE -> {
+                startX = currentX
+                startY = currentY
+            }
+            else -> paint.pathEffect = null
         }
     }
 
@@ -127,6 +153,7 @@ class DrawView @JvmOverloads constructor(
         curPath.reset()
     }
 
+
     override fun onSizeChanged(width: Int, height: Int, oldWidth: Int, oldHeight: Int) {
         super.onSizeChanged(width, height, oldWidth, oldHeight)
         if (::extraBitmap.isInitialized) extraBitmap.recycle()
@@ -138,9 +165,6 @@ class DrawView @JvmOverloads constructor(
         super.onDraw(canvas)
 
         //For a future project///////////////////////////////////
-//        val pathEx = Path()
-//        val paintEx = Paint()
-//        paintEx.setColor(Color.BLUE)
 
         val text = context.getString(R.string.circle_text_draw)
 
@@ -151,6 +175,8 @@ class DrawView @JvmOverloads constructor(
         canvas.drawRect(200f, 150f, 400f, 200f, paint)
         canvas.drawArc(300f, 250f, 600f, 500f, 30f, 300f, true, paint)
         canvas.drawText("text", 300f, 700f, paint)
+        canvas.drawRect(startX, startY, 400f, 1200f, paint)
+
 
 //        //ThreeAngleAndCurveYellow
 //        paintEx.setColor(Color.YELLOW)
@@ -169,8 +195,6 @@ class DrawView @JvmOverloads constructor(
 //        canvas.drawTextOnPath(text, pathEx, 0f, 60f, paintEx)
 //        paintEx.style = Paint.Style.STROKE
 //        canvas.drawPath(pathEx, paintEx)
-
-
 
 
         canvas.drawBitmap(extraBitmap, 0f, 0f, null)
