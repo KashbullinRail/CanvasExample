@@ -12,6 +12,8 @@ import com.example.canvas.data.model.CanvasViewState
 import com.example.canvas.data.settings.COLOR
 import com.example.canvas.data.settings.TOOLS
 import kotlin.math.abs
+import kotlin.math.sqrt
+
 
 class DrawView @JvmOverloads constructor(
     context: Context,
@@ -36,12 +38,15 @@ class DrawView @JvmOverloads constructor(
     private var currentY = 0f
     private val touchTolerance = ViewConfiguration.get(context).scaledTouchSlop
 
+    //Variable for rectangle and circle draw
     private var startX = 0f
     private var endX = 0f
     private var startY = 0f
     private var endY = 0f
-    private var circleActive = false
-    private var circleStart = false
+    private var drawActive = 0
+    private var drawMove = 0
+    private var radius = 0f
+
     val text = context.getString(R.string.circle_text_draw)
 
     // Path representing
@@ -62,23 +67,6 @@ class DrawView @JvmOverloads constructor(
         strokeWidth = STROKE_WIDTH // default: Hairline-width (really thin)
     }
 
-//    fun render(state: CanvasViewState) {
-//        drawColor = ResourcesCompat.getColor(resources, state.color.value, null)
-//        paint.color = drawColor
-//        paint.strokeWidth = state.size.value.toFloat()
-//        if (state.tools == TOOLS.DASH) {
-//            paint.pathEffect = DashPathEffect(
-//                floatArrayOf(
-//                    state.size.value.toFloat() * 2,
-//                    state.size.value.toFloat() * 2,
-//                    state.size.value.toFloat() * 2,
-//                    state.size.value.toFloat() * 2
-//                ), 0f
-//            )
-//        } else {
-//            paint.pathEffect = null
-//        }
-//    }
 
     fun render(state: CanvasViewState) {
         drawColor = ResourcesCompat.getColor(resources, state.color.value, null)
@@ -86,7 +74,7 @@ class DrawView @JvmOverloads constructor(
         paint.strokeWidth = state.size.value.toFloat()
         when (state.tools) {
             TOOLS.DASH -> {
-                circleActive = false
+                drawActive = 0
                 paint.pathEffect = DashPathEffect(
                     floatArrayOf(
                         state.size.value.toFloat() * 2,
@@ -97,11 +85,16 @@ class DrawView @JvmOverloads constructor(
                 )
             }
             TOOLS.CIRCLE -> {
-                circleActive = true
+                drawActive = 1
+
+            }
+            TOOLS.RECTANGLE -> {
+                drawActive = 2
             }
             else -> {
                 paint.pathEffect = null
-                circleActive = false
+                drawActive = 0
+
             }
         }
     }
@@ -111,32 +104,55 @@ class DrawView @JvmOverloads constructor(
         invalidate()
     }
 
-//    fun setOnClickField(onClickField: () -> Unit) {
-//        onClick = onClickField
-//    }
-
     override fun onTouchEvent(event: MotionEvent): Boolean {
         motionTouchEventX = event.x
         motionTouchEventY = event.y
 
-        if (circleActive == false) {
-            when (event.action) {
-                MotionEvent.ACTION_DOWN -> touchStart()
-                MotionEvent.ACTION_MOVE -> touchMove()
-                MotionEvent.ACTION_UP -> touchUp()
+        when (drawActive) {
+            0 -> {
+                when (event.action) {
+                    MotionEvent.ACTION_DOWN -> touchStart()
+                    MotionEvent.ACTION_MOVE -> touchMove()
+                    MotionEvent.ACTION_UP -> touchUp()
+                }
             }
-
-        } else {
-            textDraw()
+            1 -> {
+                when (event.action) {
+                    MotionEvent.ACTION_DOWN -> touchStartFigure()
+                    MotionEvent.ACTION_UP -> touchUpCircle()
+                }
+                drawMove = 1
+            }
+            2 -> {
+                when (event.action) {
+                    MotionEvent.ACTION_DOWN -> touchStartFigure()
+                    MotionEvent.ACTION_UP -> touchUpRectangle()
+                }
+                drawMove = 2
+            }
         }
+
         return true
     }
 
-    private fun textDraw() {
-        touchStart()
-
-        circleStart = true
+    private fun touchUpCircle() {
+        val dx = abs(motionTouchEventX - startX)
+        val dy = abs(motionTouchEventY - startY)
+        radius = sqrt(dx * dx + dy * dy).toFloat()
+        invalidate()
     }
+
+    private fun touchStartFigure() {
+        startX = motionTouchEventX
+        startY = motionTouchEventY
+    }
+
+    private fun touchUpRectangle() {
+        endX = motionTouchEventX
+        endY = motionTouchEventY
+        invalidate()
+    }
+
 
     private fun restartCurrentXY() {
         currentX = motionTouchEventX
@@ -147,8 +163,6 @@ class DrawView @JvmOverloads constructor(
         onClick()
         path.reset()
         path.moveTo(motionTouchEventX, motionTouchEventY)
-        startX = currentX
-        startY = currentY
         restartCurrentXY()
     }
 
@@ -170,12 +184,9 @@ class DrawView @JvmOverloads constructor(
     }
 
     private fun touchUp() {
-        circleStart = false
         drawing.addPath(curPath)
-
         curPath.reset()
     }
-
 
     override fun onSizeChanged(width: Int, height: Int, oldWidth: Int, oldHeight: Int) {
         super.onSizeChanged(width, height, oldWidth, oldHeight)
@@ -187,18 +198,31 @@ class DrawView @JvmOverloads constructor(
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
 
+        //Rectangle Draw
+        if (drawMove == 2) {
+            extraCanvas.drawRect(startX, startY, endX, endY, paint)
+            drawMove = 0
+        }
+
+        //Circle Draw
+        if (drawMove == 1) {
+            extraCanvas.drawCircle(startX, startY, radius, paint)
+            drawMove = 0
+        }
+
+        canvas.drawBitmap(extraBitmap, 0f, 0f, null)
+        canvas.drawPath(drawing, this.paint)
+        canvas.drawPath(curPath, this.paint)
+
+
         //For a future project///////////////////////////////////
-
-
-//        paintEx.textSize = 100f
+//        paint.textSize = 100f
 //        paint.textSize = 100f
 //        canvas.drawARGB(80, 100, 200, 200)
 //        canvas.drawCircle(100f, 200f, 50f, paint)
 //        canvas.drawRect(200f, 150f, 400f, 200f, paint)
 //        canvas.drawArc(300f, 250f, 600f, 500f, 30f, 300f, true, paint)
 //        canvas.drawText("text", 300f, 700f, paint)
-//        canvas.drawRect(startX, startY, 400f, 1200f, paint)
-
 
         //ThreeAngleAndCurveYellow
 //        path.moveTo(100f, 750f)
@@ -208,24 +232,16 @@ class DrawView @JvmOverloads constructor(
 //        path.quadTo(100f, 1100f, 500f, 1300f)
 //        canvas.drawPath(path, paint)
 
-        //
         //CircleAndTextGreen
-       if (circleStart){
-//           paint.style = Paint.Style.FILL
-           path.addCircle(startX, startY, 400f, Path.Direction.CW)
-//           canvas.drawTextOnPath(text, path, 0f, 60f, paint)
-           paint.style = Paint.Style.STROKE
-           canvas.drawPath(path, paint)
-           circleStart = false
-       }
+//       if (drawMove == 1){
+////           paint.style = Paint.Style.FILL
+//           path.addCircle(startX, startY, 400f, Path.Direction.CW)
+////           canvas.drawTextOnPath(text, path, 0f, 60f, paint)
+//           paint.style = Paint.Style.STROKE
+//           extraCanvas.drawPath(path, paint)
+//           drawMove = 0
+//       }
 
-
-
-
-
-        canvas.drawBitmap(extraBitmap, 0f, 0f, null)
-        canvas.drawPath(drawing, this.paint)
-        canvas.drawPath(curPath, this.paint)
     }
 
 }
