@@ -20,5 +20,6 @@
     <string name="input_image_keyword">Input Image Keyword</string>
     <string name="enable">Enable</string>
     <string name="set_draw">Set Draw</string>
+    <string name="not_input_text">Not input text</string>
 
 </resources>

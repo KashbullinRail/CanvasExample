@@ -62,7 +62,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <include
-        android:id="@+id/tvSizeLayout"
+        android:id="@+id/sizeLayout"
         layout="@layout/layout_tools"
         android:layout_width="0dp"
         android:layout_height="wrap_content"

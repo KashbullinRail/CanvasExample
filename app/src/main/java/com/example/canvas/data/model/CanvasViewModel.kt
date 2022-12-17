@@ -19,15 +19,15 @@ class CanvasViewModel : BaseViewModel<ViewState>() {
             isPaletteVisible = false,
             isBrushSizeChangerVisible = false,
             canvasViewState = CanvasViewState(
-                color = COLOR.BLACK,
-                size = SIZE.MEDIUM,
+                color = COLOR.GREEN,
+                size = SIZE.SMALL,
                 tools = TOOLS.NORMAL
             ),
             isToolsVisible = false
         )
 
     init {
-        processDataEvent(DataEvent.OnSetDefaultTools(tool = TOOLS.NORMAL, color = COLOR.BLACK, size = SIZE.MEDIUM))
+        processDataEvent(DataEvent.OnSetDefaultTools(tool = TOOLS.NORMAL, color = COLOR.GREEN, size = SIZE.SMALL))
     }
 
     override fun reduce(event: Event, previousState: ViewState): ViewState? {
