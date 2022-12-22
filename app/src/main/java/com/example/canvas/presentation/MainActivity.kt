@@ -66,6 +66,8 @@ class MainActivity : AppCompatActivity() {
             viewModel.processUiEvent(UiEvent.OnSizeClicked(it))
         }
 
+
+
         ivClear.setOnClickListener {
             drawView.clear()
         }

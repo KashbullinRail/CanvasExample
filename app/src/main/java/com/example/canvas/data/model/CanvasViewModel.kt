@@ -99,7 +99,6 @@ class CanvasViewModel : BaseViewModel<ViewState>() {
                         it
                     }
                 }
-
                 return previousState.copy(
                     toolsList = toolsList,
                     canvasViewState = previousState.canvasViewState.copy(color = selectedColor)
@@ -116,10 +115,24 @@ class CanvasViewModel : BaseViewModel<ViewState>() {
                         it
                     }
                 }
-
                 return previousState.copy(
                     toolsList = toolsList,
                     canvasViewState = previousState.canvasViewState.copy(size = selectedSize)
+                )
+            }
+            is UiEvent.OnPointsClicked -> {
+                val selectedPoints = POINTS.values()[event.index]
+
+                val toolsList = previousState.toolsList.map {
+                    if (it.type = TOOLS.POINTS) {
+                        it.copy(selectedPoints = selectedPoints)
+                    } else {
+                        it
+                    }
+                }
+                return previousState.copy(
+                    toolsList = toolsList,
+                    canvasViewState = previousState.canvasViewState.copy(points = selectedPoints)
                 )
             }
 

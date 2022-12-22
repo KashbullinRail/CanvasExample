@@ -2,6 +2,7 @@ package com.example.canvas.domain
 
 import androidx.annotation.ColorRes
 import com.example.canvas.data.settings.COLOR
+import com.example.canvas.data.settings.POINTS
 import com.example.canvas.data.settings.SIZE
 import com.example.canvas.data.settings.TOOLS
 
@@ -16,7 +17,8 @@ sealed class ToolItem : Item {
         val selectedTool: TOOLS = TOOLS.NORMAL,
         val isSelected: Boolean = false,
         val selectedSize: SIZE = SIZE.SMALL,
-        val selectedColor: COLOR = COLOR.BLACK
+        val selectedColor: COLOR = COLOR.BLACK,
+        val selectedPoints: POINTS = POINTS.MEDIUM
     ) : ToolItem()
 
 }
