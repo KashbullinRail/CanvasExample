@@ -8,10 +8,16 @@ enum class TOOLS(
     @DrawableRes
     val value: Int
 ) {
-    NORMAL(R.drawable.ic_baseline_horizontal_rule_24),
-    CIRCLE(R.drawable.ic_baseline_adjust_24),
-    RECTANGLE(R.drawable.ic_baseline_check_box_outline_blank_24),
+    NORMAL(R.drawable.ic_baseline_curved_line),
     DASH(R.drawable.ic_dashed_line),
-    SIZE(R.drawable.ic_baseline_zoom_out_map_24),
-    PALETTE(R.drawable.ic_baseline_brightness_1_24)
+    LEFT(R.drawable.ic_baseline_left),
+    CIRCLE(R.drawable.ic_baseline_circle_main),
+    RECTANGLE(R.drawable.ic_baseline_check_box_outline_blank_24),
+    LINE(R.drawable.ic_baseline_horizontal_rule_24),
+    TEXT(R.drawable.ic_baseline_text),
+    SPRAY(R.drawable.ic_baseline_spray_points),
+    RIGHT(R.drawable.ic_baseline_right),
+    POINTS(R.drawable.ic_baseline_points_amount),
+    SIZE(R.drawable.ic_baseline_size),
+    PALETTE(R.drawable.ic_baseline_palette)
 }
