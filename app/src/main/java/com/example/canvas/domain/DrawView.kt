@@ -11,6 +11,7 @@ import androidx.core.content.res.ResourcesCompat
 import com.example.canvas.R
 import com.example.canvas.data.model.CanvasViewState
 import com.example.canvas.data.settings.COLOR
+import com.example.canvas.data.settings.SIZE
 import com.example.canvas.data.settings.TOOLS
 import kotlin.math.abs
 import kotlin.math.sqrt
@@ -40,17 +41,20 @@ class DrawView @JvmOverloads constructor(
     private var currentY = 0f
     private val touchTolerance = ViewConfiguration.get(context).scaledTouchSlop
 
+    //Variable for tools state
+    private var drawActive = 0
+    private var drawMove = 0
+
     //Variable for rectangle and circle draw
     private var startX = 0f
     private var endX = 0f
     private var startY = 0f
     private var endY = 0f
-    private var drawActive = 0
-    private var drawMove = 0
     private var radius = 0f
+
     //Spray points array
     private var amountPoints = 100
-    private var sprayPoints:Array<Float> =  Array(amountPoints+2, {0f})
+    private var sprayPoints: Array<Float> = Array(amountPoints + 2, { -100f })
 
     val text = context.getString(R.string.circle_text_draw)
 
@@ -140,7 +144,7 @@ class DrawView @JvmOverloads constructor(
                 drawMove = 2
             }
             3 -> {
-                when(event.action){
+                when (event.action) {
                     MotionEvent.ACTION_DOWN -> touchPaintPointArray()
                 }
                 drawMove = 3
@@ -153,9 +157,9 @@ class DrawView @JvmOverloads constructor(
     private fun touchPaintPointArray() {
         startX = motionTouchEventX
         startY = motionTouchEventY
-        for (i in 1..amountPoints step 2){
-            sprayPoints[i+1] = abs(startX + Random.nextInt(-amountPoints, amountPoints))
-            sprayPoints[i] = abs(startY + Random.nextInt(-amountPoints, amountPoints))
+        for (i in 1..amountPoints step 2) {
+            sprayPoints[i + 1] = abs(startX + Random.nextInt(-amountPoints*2, amountPoints*2))
+            sprayPoints[i] = abs(startY + Random.nextInt(-amountPoints*2, amountPoints*2))
         }
         invalidate()
     }
