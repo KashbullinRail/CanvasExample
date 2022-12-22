@@ -15,6 +15,7 @@ import com.example.canvas.R
 import com.example.canvas.UiEvent
 import com.example.canvas.ViewState
 import com.example.canvas.data.model.CanvasViewModel
+import com.example.canvas.data.settings.POINTS
 import com.example.canvas.domain.DrawView
 import com.example.canvas.domain.ToolsLayout
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -26,6 +27,7 @@ class MainActivity : AppCompatActivity() {
         private const val PALETTE_VIEW = 0
         private const val TOOLS_VIEW = 1
         private const val SIZE_VIEW = 2
+        private const val POINTS_VIEW = 3
     }
 
     private var launcher: ActivityResultLauncher<Intent>? = null
@@ -35,6 +37,7 @@ class MainActivity : AppCompatActivity() {
     private val paletteLayout: ToolsLayout by lazy { findViewById(R.id.paletteLayout) }
     private val toolsLayout: ToolsLayout by lazy { findViewById(R.id.toolLayout) }
     private val sizeLayout: ToolsLayout by lazy { findViewById(R.id.sizeLayout) }
+    private val pointsLayout: ToolsLayout by lazy { findViewById(R.id.pointsLayout) }
     private val ivTools: ImageView by lazy { findViewById(R.id.ivTools) }
     private val drawView: DrawView by lazy { findViewById(R.id.viewDraw) }
     private val ivClear: ImageView by lazy { findViewById(R.id.ivClear) }
@@ -66,7 +69,9 @@ class MainActivity : AppCompatActivity() {
             viewModel.processUiEvent(UiEvent.OnSizeClicked(it))
         }
 
-
+        pointsLayout.setOnClickListener {
+            viewModel.processUiEvent(UiEvent.OnPointsClicked(it))
+        }
 
         ivClear.setOnClickListener {
             drawView.clear()
@@ -88,6 +93,11 @@ class MainActivity : AppCompatActivity() {
             isVisible = viewState.isBrushSizeChangerVisible
         }
 
+        with(toolsList[POINTS_VIEW]) {
+            render(viewState.pointList)
+            isVisible = viewState.isSprayPointsChangerVisible
+        }
+
         with(toolsList[TOOLS_VIEW]) {
             render(viewState.toolsList)
             isVisible = viewState.isToolsVisible
@@ -103,7 +113,6 @@ class MainActivity : AppCompatActivity() {
         popupMenu.inflate(R.menu.item_menu)
 
         popupMenu.setOnMenuItemClickListener {
-
             when (it.itemId) {
                 R.id.itemM_ImageStorage -> {
                     // TODO create image storage open code
@@ -128,11 +137,9 @@ class MainActivity : AppCompatActivity() {
                 }
                 else -> true
             }
-
         }
 
         ivSetBackground.setOnClickListener {
-
             try {
                 val popup = PopupMenu::class.java.getDeclaredField("mPopup")
                 popup.isAccessible = true
@@ -146,7 +153,6 @@ class MainActivity : AppCompatActivity() {
                 popupMenu.show()
             }
             true
-
         }
 
     }
