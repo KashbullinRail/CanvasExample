@@ -34,7 +34,6 @@ class DrawView @JvmOverloads constructor(
     private var path = Path()
     private var motionTouchEventX = 0f
     private var motionTouchEventY = 0f
-
     private var currentX = 0f
     private var currentY = 0f
     private val touchTolerance = ViewConfiguration.get(context).scaledTouchSlop
@@ -51,10 +50,8 @@ class DrawView @JvmOverloads constructor(
     private var radius = 0f
 
     //Spray points array
-    private var amountPoints = 100
-    private var sprayPoints: Array<Float> = Array(amountPoints + 2, { -100f })
-
-    val text = context.getString(R.string.circle_text_draw)
+    private var amountPoints = 2
+    private var sprayPoints: Array<Float> = emptyArray()
 
     // Path representing
     private val drawing = Path() // the drawing
@@ -79,7 +76,7 @@ class DrawView @JvmOverloads constructor(
         drawColor = ResourcesCompat.getColor(resources, state.color.value, null)
         paint.color = drawColor
         paint.strokeWidth = state.size.value.toFloat()
-        amountPoints = state.points.value.toInt()
+        amountPoints = state.points.value
         when (state.tools) {
             TOOLS.DASH -> {
                 drawActive = 0
@@ -98,8 +95,16 @@ class DrawView @JvmOverloads constructor(
             TOOLS.RECTANGLE -> {
                 drawActive = 2
             }
-            TOOLS.POINTS -> {
+            TOOLS.SPRAY -> {
+                sprayPoints = emptyArray()
+                sprayPoints = Array(amountPoints + 1, { 0f })
                 drawActive = 3
+            }
+            TOOLS.LINE -> {
+                drawActive = 4
+            }
+            TOOLS.TEXT -> {
+                drawActive = 5
             }
             else -> {
                 paint.pathEffect = null
@@ -147,6 +152,18 @@ class DrawView @JvmOverloads constructor(
                 }
                 drawMove = 3
             }
+            4 -> {
+                when (event.action) {
+                    //TODO create line function
+                }
+                drawMove = 4
+            }
+            5 -> {
+                when (event.action) {
+                    //TODO create write text function
+                }
+                drawMove = 5
+            }
         }
 
         return true
@@ -156,8 +173,12 @@ class DrawView @JvmOverloads constructor(
         startX = motionTouchEventX
         startY = motionTouchEventY
         for (i in 1..amountPoints step 2) {
-            sprayPoints[i + 1] = abs(startX + Random.nextInt(-amountPoints*2, amountPoints*2))
-            sprayPoints[i] = abs(startY + Random.nextInt(-amountPoints*2, amountPoints*2))
+            sprayPoints[i + 1] = abs(
+                startX + Random.nextInt(-amountPoints * 2, amountPoints * 2)
+            )
+            sprayPoints[i] = abs(
+                startY + Random.nextInt(-amountPoints * 2, amountPoints * 2)
+            )
         }
         invalidate()
     }

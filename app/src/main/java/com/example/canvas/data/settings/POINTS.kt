@@ -6,7 +6,7 @@ enum class POINTS(
 ) {
     FEW(30),
     MEDIUM(50),
-    MANY(75),
+    MANY(76),
     SOMANY(90);
 
     companion object {
