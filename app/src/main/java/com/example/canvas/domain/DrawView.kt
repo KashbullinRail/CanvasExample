@@ -3,7 +3,6 @@ package com.example.canvas.domain
 import android.content.Context
 import android.graphics.*
 import android.util.AttributeSet
-import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewConfiguration
@@ -11,7 +10,6 @@ import androidx.core.content.res.ResourcesCompat
 import com.example.canvas.R
 import com.example.canvas.data.model.CanvasViewState
 import com.example.canvas.data.settings.COLOR
-import com.example.canvas.data.settings.SIZE
 import com.example.canvas.data.settings.TOOLS
 import kotlin.math.abs
 import kotlin.math.sqrt
@@ -100,7 +98,7 @@ class DrawView @JvmOverloads constructor(
             TOOLS.RECTANGLE -> {
                 drawActive = 2
             }
-            TOOLS.SPRAY -> {
+            TOOLS.POINTS -> {
                 drawActive = 3
             }
             else -> {

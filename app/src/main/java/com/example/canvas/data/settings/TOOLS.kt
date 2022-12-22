@@ -12,7 +12,7 @@ enum class TOOLS(
     CIRCLE(R.drawable.ic_baseline_adjust_24),
     RECTANGLE(R.drawable.ic_baseline_check_box_outline_blank_24),
     DASH(R.drawable.ic_dashed_line),
-    SPRAY(R.drawable.ic_baseline_spray_points),
+    POINTS(R.drawable.ic_baseline_spray_points),
     SIZE(R.drawable.ic_baseline_zoom_out_map_24),
     PALETTE(R.drawable.ic_baseline_brightness_1_24)
 }
