@@ -26,8 +26,8 @@ class MainActivity : AppCompatActivity() {
     companion object {
         private const val PALETTE_VIEW = 0
         private const val TOOLS_VIEW = 1
-        private const val SIZE_VIEW = 2
-        private const val POINTS_VIEW = 3
+        private const val SIZE_VIEW = 3
+        private const val POINTS_VIEW = 2
     }
 
     private var launcher: ActivityResultLauncher<Intent>? = null

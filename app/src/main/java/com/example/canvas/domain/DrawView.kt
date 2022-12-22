@@ -79,6 +79,7 @@ class DrawView @JvmOverloads constructor(
         drawColor = ResourcesCompat.getColor(resources, state.color.value, null)
         paint.color = drawColor
         paint.strokeWidth = state.size.value.toFloat()
+        amountPoints = state.points.value.toInt()
         when (state.tools) {
             TOOLS.DASH -> {
                 drawActive = 0
@@ -93,7 +94,6 @@ class DrawView @JvmOverloads constructor(
             }
             TOOLS.CIRCLE -> {
                 drawActive = 1
-
             }
             TOOLS.RECTANGLE -> {
                 drawActive = 2

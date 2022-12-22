@@ -16,9 +16,9 @@ sealed class ToolItem : Item {
         val type: TOOLS,
         val selectedTool: TOOLS = TOOLS.NORMAL,
         val isSelected: Boolean = false,
+        val selectedPoints: POINTS = POINTS.MEDIUM,
         val selectedSize: SIZE = SIZE.SMALL,
-        val selectedColor: COLOR = COLOR.BLACK,
-        val selectedPoints: POINTS = POINTS.MEDIUM
+        val selectedColor: COLOR = COLOR.BLACK
     ) : ToolItem()
 
 }

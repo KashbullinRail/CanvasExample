@@ -116,7 +116,7 @@ class CanvasViewModel : BaseViewModel<ViewState>() {
                     }
                 }
                 return previousState.copy(
-                    toolsList = toolsList,
+//                    toolsList = toolsList,
                     canvasViewState = previousState.canvasViewState.copy(size = selectedSize)
                 )
             }
@@ -131,7 +131,7 @@ class CanvasViewModel : BaseViewModel<ViewState>() {
                     }
                 }
                 return previousState.copy(
-                    toolsList = toolsList,
+//                    toolsList = toolsList,
                     canvasViewState = previousState.canvasViewState.copy(points = selectedPoints)
                 )
             }
@@ -142,7 +142,8 @@ class CanvasViewModel : BaseViewModel<ViewState>() {
                         model.copy(
                             isSelected = true,
                             selectedColor = event.color,
-                            selectedSize = event.size
+                            selectedSize = event.size,
+                            selectedPoints = event.points
                         )
                     } else {
                         model.copy(isSelected = false)

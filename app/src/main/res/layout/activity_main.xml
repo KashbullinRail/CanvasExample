@@ -62,7 +62,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <include
-        android:id="@+id/sizeLayout"
+        android:id="@+id/pointsLayout"
         layout="@layout/layout_tools"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -72,7 +72,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <include
-        android:id="@+id/pointsLayout"
+        android:id="@+id/sizeLayout"
         layout="@layout/layout_tools"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
