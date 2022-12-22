@@ -186,7 +186,7 @@ class DrawView @JvmOverloads constructor(
     private fun touchUpCircle() {
         val dx = abs(motionTouchEventX - startX)
         val dy = abs(motionTouchEventY - startY)
-        radius = sqrt(dx * dx + dy * dy).toFloat()
+        radius = sqrt(dx * dx + dy * dy)
         invalidate()
     }
 
