@@ -42,6 +42,20 @@ fun sizeAdapterDelegate(
         }
     }
 
+fun pointsAdapterDelegate(
+    onClick: (Int) -> Unit
+): AdapterDelegate<List<Item>> =
+    adapterDelegateLayoutContainer<ToolItem.PointModel, Item>(
+        R.layout.item_points
+    ) {
+        val points: TextView = findViewById(R.id.tvPoints)
+        itemView.setOnClickListener { onClick(adapterPosition) }
+
+        bind { list ->
+            points.text = item.point.toString()
+        }
+    }
+
 fun toolsAdapterDelegate(
     onToolsClick: (Int) -> Unit
 ): AdapterDelegate<List<Item>> = adapterDelegateLayoutContainer<ToolItem.ToolModel, Item>(

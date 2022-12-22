@@ -49,7 +49,7 @@ class MainActivity : AppCompatActivity() {
 
         launcherImageSearchActivity()
 
-        toolsList = listOf(paletteLayout, toolsLayout, sizeLayout)
+        toolsList = listOf(paletteLayout, toolsLayout, pointsLayout, sizeLayout)
 
         viewModel.viewState.observe(this, ::render)
 

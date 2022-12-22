@@ -25,6 +25,9 @@ class ToolsLayout @JvmOverloads constructor(
         toolsAdapterDelegate {
             onClick(it)
         },
+        pointsAdapterDelegate {
+            onClick(it)
+        },
         sizeAdapterDelegate {
             onClick(it)
         }

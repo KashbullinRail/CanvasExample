@@ -124,7 +124,7 @@ class CanvasViewModel : BaseViewModel<ViewState>() {
                 val selectedPoints = POINTS.values()[event.index]
 
                 val toolsList = previousState.toolsList.map {
-                    if (it.type = TOOLS.POINTS) {
+                    if (it.type == TOOLS.POINTS) {
                         it.copy(selectedPoints = selectedPoints)
                     } else {
                         it
