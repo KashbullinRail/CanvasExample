@@ -3,6 +3,7 @@ package com.example.canvas.domain
 import android.content.Context
 import android.graphics.*
 import android.util.AttributeSet
+import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewConfiguration
@@ -13,6 +14,7 @@ import com.example.canvas.data.settings.COLOR
 import com.example.canvas.data.settings.TOOLS
 import kotlin.math.abs
 import kotlin.math.sqrt
+import kotlin.random.Random
 
 
 class DrawView @JvmOverloads constructor(
@@ -46,6 +48,9 @@ class DrawView @JvmOverloads constructor(
     private var drawActive = 0
     private var drawMove = 0
     private var radius = 0f
+    //Spray points array
+    private var amountPoints = 100
+    private var sprayPoints:Array<Float> =  Array(amountPoints+2, {0f})
 
     val text = context.getString(R.string.circle_text_draw)
 
@@ -91,6 +96,9 @@ class DrawView @JvmOverloads constructor(
             TOOLS.RECTANGLE -> {
                 drawActive = 2
             }
+            TOOLS.SPRAY -> {
+                drawActive = 3
+            }
             else -> {
                 paint.pathEffect = null
                 drawActive = 0
@@ -115,6 +123,7 @@ class DrawView @JvmOverloads constructor(
                     MotionEvent.ACTION_MOVE -> touchMove()
                     MotionEvent.ACTION_UP -> touchUp()
                 }
+                drawMove = 0
             }
             1 -> {
                 when (event.action) {
@@ -130,9 +139,25 @@ class DrawView @JvmOverloads constructor(
                 }
                 drawMove = 2
             }
+            3 -> {
+                when(event.action){
+                    MotionEvent.ACTION_DOWN -> touchPaintPointArray()
+                }
+                drawMove = 3
+            }
         }
 
         return true
+    }
+
+    private fun touchPaintPointArray() {
+        startX = motionTouchEventX
+        startY = motionTouchEventY
+        for (i in 1..amountPoints step 2){
+            sprayPoints[i+1] = abs(startX + Random.nextInt(-amountPoints, amountPoints))
+            sprayPoints[i] = abs(startY + Random.nextInt(-amountPoints, amountPoints))
+        }
+        invalidate()
     }
 
     private fun touchUpCircle() {
@@ -198,15 +223,21 @@ class DrawView @JvmOverloads constructor(
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
 
+        //Circle Draw
+        if (drawMove == 1) {
+            extraCanvas.drawCircle(startX, startY, radius, paint)
+            drawMove = 0
+        }
+
         //Rectangle Draw
         if (drawMove == 2) {
             extraCanvas.drawRect(startX, startY, endX, endY, paint)
             drawMove = 0
         }
 
-        //Circle Draw
-        if (drawMove == 1) {
-            extraCanvas.drawCircle(startX, startY, radius, paint)
+        //Spray Points
+        if (drawMove == 3) {
+            extraCanvas.drawPoints(sprayPoints.toFloatArray(), paint)
             drawMove = 0
         }
 
