@@ -106,7 +106,7 @@ class DrawView @JvmOverloads constructor(
             }
             TOOLS.SPRAY -> {
                 sprayPoints = emptyArray()
-                sprayPoints = Array(amountPoints + 1, { 0f })
+                sprayPoints = Array(amountPoints, { 0f })
                 drawActive = TOOL_ACTIVE.SPRAYPOINTS.value
             }
             TOOLS.LINE -> {
@@ -217,7 +217,7 @@ class DrawView @JvmOverloads constructor(
         startX = motionTouchEventX
         startY = motionTouchEventY
         for (i in 1..amountPoints step 2) {
-            sprayPoints[i + 1] = abs(
+            sprayPoints[i - 1] = abs(
                 startX + Random.nextInt(-amountPoints * 2, amountPoints * 2)
             )
             sprayPoints[i] = abs(
