@@ -7,7 +7,6 @@ import android.view.MotionEvent
 import android.view.View
 import android.view.ViewConfiguration
 import androidx.core.content.res.ResourcesCompat
-import com.example.canvas.R
 import com.example.canvas.data.model.CanvasViewState
 import com.example.canvas.data.settings.COLOR
 import com.example.canvas.data.settings.TOOLS
@@ -142,7 +141,7 @@ class DrawView @JvmOverloads constructor(
             2 -> {
                 when (event.action) {
                     MotionEvent.ACTION_DOWN -> touchStartFigure()
-                    MotionEvent.ACTION_UP -> touchUpRectangle()
+                    MotionEvent.ACTION_UP -> touchUpRectangleAndLine()
                 }
                 drawMove = 2
             }
@@ -154,7 +153,8 @@ class DrawView @JvmOverloads constructor(
             }
             4 -> {
                 when (event.action) {
-                    //TODO create line function
+                    MotionEvent.ACTION_DOWN -> touchStartFigure()
+                    MotionEvent.ACTION_UP -> touchUpRectangleAndLine()
                 }
                 drawMove = 4
             }
@@ -195,7 +195,7 @@ class DrawView @JvmOverloads constructor(
         startY = motionTouchEventY
     }
 
-    private fun touchUpRectangle() {
+    private fun touchUpRectangleAndLine() {
         endX = motionTouchEventX
         endY = motionTouchEventY
         invalidate()
@@ -261,6 +261,12 @@ class DrawView @JvmOverloads constructor(
         //Spray Points
         if (drawMove == 3) {
             extraCanvas.drawPoints(sprayPoints.toFloatArray(), paint)
+            drawMove = 0
+        }
+
+        //Line
+        if (drawMove == 4) {
+            extraCanvas.drawLine(startX, startY, endX, endY, paint)
             drawMove = 0
         }
 
