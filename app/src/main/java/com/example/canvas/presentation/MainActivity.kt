@@ -3,6 +3,8 @@ package com.example.canvas.presentation
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.PopupMenu
 import android.widget.Toast
@@ -34,6 +36,9 @@ class MainActivity : AppCompatActivity() {
     private val viewModel: CanvasViewModel by viewModel()
     private var toolsList: List<ToolsLayout> = listOf()
 
+    private lateinit var inAnimation: Animation
+    private lateinit var outAnimation: Animation
+
     private val paletteLayout: ToolsLayout by lazy { findViewById(R.id.paletteLayout) }
     private val toolsLayout: ToolsLayout by lazy { findViewById(R.id.toolLayout) }
     private val sizeLayout: ToolsLayout by lazy { findViewById(R.id.sizeLayout) }
@@ -46,6 +51,9 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        inAnimation = AnimationUtils.loadAnimation(this, R.anim.alpha_in)
+        outAnimation = AnimationUtils.loadAnimation(this, R.anim.alpha_out)
 
         launcherImageSearchActivity()
 
