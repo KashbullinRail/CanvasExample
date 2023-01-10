@@ -112,9 +112,9 @@ class DrawView @JvmOverloads constructor(
             TOOLS.LINE -> {
                 drawActive = TOOL_ACTIVE.LINE.value
             }
-            TOOLS.TEXT -> {
-                drawActive = TOOL_ACTIVE.TEXT.value
-            }
+//            TOOLS.TEXT -> {
+//                drawActive = TOOL_ACTIVE.TEXT.value
+//            }
             else -> {
                 paint.pathEffect = null
                 drawActive = TOOL_ACTIVE.CURVE.value
