@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/itemM_setBackgroundFill"
+        android:icon="@drawable/ic_baseline_format_color_fill_24"
+        android:title="@string/set_background_fill"/>
+
+    <item
+        android:id="@+id/itemM_camera"
+        android:icon="@drawable/ic_baseline_camera_24"
+        android:title="@string/camera"/>
+
+    <item
+        android:id="@+id/itemM_searchPicture"
+        android:icon="@drawable/ic_baseline_image_search_24"
+        android:title="@string/search_picture"/>
+
+    <item
+        android:id="@+id/itemM_ImageStorage"
+        android:icon="@drawable/ic_baseline_image_24"
+        android:title="@string/open_image_storage"/>
+
+</menu>
