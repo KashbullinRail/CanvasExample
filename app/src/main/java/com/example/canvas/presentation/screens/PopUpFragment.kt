@@ -1,4 +1,4 @@
-package com.example.canvas.presentation
+package com.example.canvas.presentation.screens
 
 import android.os.Bundle
 import android.view.LayoutInflater

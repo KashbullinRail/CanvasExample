@@ -1,6 +1,6 @@
 package com.example.canvas
 
-import com.example.canvas.data.model.CanvasViewModel
+import com.example.canvas.presentation.CanvasViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 

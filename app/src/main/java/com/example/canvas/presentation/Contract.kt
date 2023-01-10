@@ -1,8 +1,8 @@
 package com.example.canvas
 
 import com.example.canvas.base.Event
-import com.example.canvas.data.model.CanvasViewState
-import com.example.canvas.domain.ToolItem
+import com.example.canvas.presentation.CanvasViewState
+import com.example.canvas.data.model.ToolItem
 import com.example.canvas.data.settings.COLOR
 import com.example.canvas.data.settings.POINTS
 import com.example.canvas.data.settings.SIZE

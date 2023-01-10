@@ -1,6 +1,7 @@
-package com.example.canvas.domain
+package com.example.canvas.data.model
 
 import androidx.annotation.ColorRes
+import com.example.canvas.base.Item
 import com.example.canvas.data.settings.COLOR
 import com.example.canvas.data.settings.POINTS
 import com.example.canvas.data.settings.SIZE

@@ -1,4 +1,4 @@
-package com.example.canvas.presentation
+package com.example.canvas.presentation.screens
 
 import android.content.Intent
 import android.os.Bundle
@@ -14,10 +14,10 @@ import androidx.core.view.isVisible
 import com.example.canvas.R
 import com.example.canvas.UiEvent
 import com.example.canvas.ViewState
-import com.example.canvas.data.model.CanvasViewModel
-import com.example.canvas.data.settings.POINTS
+import com.example.canvas.presentation.CanvasViewModel
 import com.example.canvas.domain.DrawView
 import com.example.canvas.domain.ToolsLayout
+import com.example.canvas.presentation.KEY_IMAGE_SEARCH
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 

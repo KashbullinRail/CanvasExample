@@ -1,4 +1,4 @@
-package com.example.canvas.presentation
+package com.example.canvas.presentation.screens
 
 import android.content.Intent
 import android.graphics.drawable.Drawable
@@ -13,6 +13,8 @@ import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.example.canvas.R
 import com.example.canvas.databinding.ActivityImageSearchBinding
+import com.example.canvas.presentation.KEY_IMAGE_SEARCH
+import com.example.canvas.presentation.URL_IMAGE
 import java.net.URLEncoder
 import java.nio.charset.StandardCharsets
 

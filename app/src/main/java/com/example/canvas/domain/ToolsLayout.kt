@@ -6,6 +6,7 @@ import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.canvas.*
+import com.example.canvas.data.model.ToolItem
 import com.hannesdorfmann.adapterdelegates4.ListDelegationAdapter
 
 

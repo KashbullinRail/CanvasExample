@@ -1,4 +1,4 @@
-package com.example.canvas.data.model
+package com.example.canvas.presentation
 
 import com.example.canvas.data.settings.COLOR
 import com.example.canvas.data.settings.POINTS

@@ -1,9 +1,9 @@
-package com.example.canvas.data.model
+package com.example.canvas.presentation
 
 import com.example.canvas.*
 import com.example.canvas.base.BaseViewModel
 import com.example.canvas.base.Event
-import com.example.canvas.domain.ToolItem
+import com.example.canvas.data.model.ToolItem
 import com.example.canvas.data.settings.COLOR
 import com.example.canvas.data.settings.POINTS
 import com.example.canvas.data.settings.SIZE
@@ -41,6 +41,7 @@ class CanvasViewModel : BaseViewModel<ViewState>() {
         )
     }
 
+
     override fun reduce(event: Event, previousState: ViewState): ViewState? {
         when (event) {
 
@@ -71,7 +72,6 @@ class CanvasViewModel : BaseViewModel<ViewState>() {
                         )
                     }
                     else -> {
-
                         val toolsList = previousState.toolsList.mapIndexed() { index, model ->
                             if (index == event.index) {
                                 model.copy(isSelected = true)
@@ -135,7 +135,6 @@ class CanvasViewModel : BaseViewModel<ViewState>() {
                     canvasViewState = previousState.canvasViewState.copy(points = selectedPoints)
                 )
             }
-
             is DataEvent.OnSetDefaultTools -> {
                 val toolsList = previousState.toolsList.map { model ->
                     if (model.type == event.tool) {
