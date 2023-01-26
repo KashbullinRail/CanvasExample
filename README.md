@@ -10,6 +10,7 @@ The start activity uses MotionLayout
 
 
 You can download the compiled application from the link
+https://apps.rustore.ru/app/com.example.canvas.Paint
 
 
 
