@@ -7,7 +7,7 @@ plugins {
 android {
     compileSdk 32
     defaultConfig {
-        applicationId "com.example.canvas"
+        applicationId 'com.example.canvas'
         minSdk 23
         targetSdk 32
         versionCode 1
@@ -19,6 +19,7 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            applicationIdSuffix 'Paint'
         }
     }
     compileOptions {
@@ -59,6 +60,8 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.2'
     implementation 'com.google.android.material:material:1.4.0'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1'
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.5.1'
     //Tests lib
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'

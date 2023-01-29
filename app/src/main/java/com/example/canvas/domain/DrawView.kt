@@ -6,10 +6,15 @@ import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewConfiguration
+import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
+import com.example.canvas.R
 import com.example.canvas.presentation.CanvasViewState
 import com.example.canvas.data.settings.COLOR
 import com.example.canvas.data.settings.TOOLS
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.withContext
 import kotlin.math.abs
 import kotlin.math.sqrt
 import kotlin.random.Random
@@ -183,6 +188,7 @@ class DrawView @JvmOverloads constructor(
     }
 
     private fun touchUpFigure() {
+//        drawing.addPath(curPath)
         extraCanvas.drawPath(curPath, paint)
         extraCanvas.save()
         curPath.reset()
@@ -213,7 +219,7 @@ class DrawView @JvmOverloads constructor(
         invalidate()
     }
 
-    private fun touchPaintPointArray() {
+    fun touchPaintPointArray() {
         startX = motionTouchEventX
         startY = motionTouchEventY
         for (i in 1..amountPoints step 2) {
@@ -253,8 +259,8 @@ class DrawView @JvmOverloads constructor(
 
     private fun touchStart() {
         onClick()
-        path.reset()
-        path.moveTo(motionTouchEventX, motionTouchEventY)
+        curPath.reset()
+        curPath.moveTo(motionTouchEventX, motionTouchEventY)
         restartCurrentXY()
     }
 
@@ -262,22 +268,25 @@ class DrawView @JvmOverloads constructor(
         val dx = abs(motionTouchEventX - currentX)
         val dy = abs(motionTouchEventY - currentY)
         if (dx >= touchTolerance || dy >= touchTolerance) {
-            path.quadTo(
+            curPath.quadTo(
                 currentX,
                 currentY,
                 (motionTouchEventX + currentX) / 2,
                 (motionTouchEventY + currentY) / 2
             )
             restartCurrentXY()
-            extraCanvas.drawPath(path, paint)
+            extraCanvas.drawPath(curPath, paint)
             extraCanvas.save()
         }
         invalidate()
     }
 
     private fun touchUp() {
-        drawing.addPath(curPath)
+//        drawing.addPath(curPath)
+        extraCanvas.drawPath(curPath, paint)
+        extraCanvas.save()
         curPath.reset()
+
     }
 
     override fun onSizeChanged(width: Int, height: Int, oldWidth: Int, oldHeight: Int) {
@@ -285,6 +294,11 @@ class DrawView @JvmOverloads constructor(
         if (::extraBitmap.isInitialized) extraBitmap.recycle()
         extraBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
         extraCanvas = Canvas(extraBitmap)
+
+        //Set backgound picture TODO
+//        val rimeDrawable = ContextCompat.getDrawable(context, R.drawable.frost)
+//        rimeDrawable?.setBounds(0, 0, width, height)
+//        rimeDrawable?.draw(extraCanvas)
     }
 
     override fun onDraw(canvas: Canvas) {
